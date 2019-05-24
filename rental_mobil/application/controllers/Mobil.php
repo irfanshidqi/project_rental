@@ -13,7 +13,7 @@ class Mobil extends CI_Controller {
     public function index()
     {
 
-    	$data['data'] = $this->app_admin->get_all('tb_mobil');
+    	$data['data'] = $this->app_admin->getMobil();
     	$this->template->admin('admin/isi_datamobil', $data);
     }
 
@@ -52,7 +52,7 @@ class Mobil extends CI_Controller {
 
 			$mobil = array (
 				'nama_mobil' => $this->input->post('nama_mobil', TRUE),
-				'merk_mobil' => $this->input->post('merk_mobil', TRUE),
+				'id_merek' => $this->input->post('id_merek', TRUE),
 				'deskripsi_mobil' => $this->input->post('deskripsi_mobil', TRUE),
 				'tahun_mobil' => $this->input->post('tahun_mobil', TRUE),
 				'kapasitas_mobil' => $this->input->post('kapasitas_mobil', TRUE),
@@ -102,40 +102,56 @@ class Mobil extends CI_Controller {
 		$data['deskripsi_mobil'] = $this->input->post('deskripsi_mobil', TRUE);
 		$data['fasilitas_mobil'] = $this->input->post('fasilitas_mobil', TRUE);
 
-
+		$data['cek']= $this->app_admin->getAll();
 		$data['header_tambahmobil'] = "Tambah Mobil Baru";
 
 		$this->template->admin('admin/form_tambahmobil', $data);
 	}
-	public function detail()
+	public function detail($id)
 	{
-		$id_mobil = $this->uri->segment(3);
+		//$id_mobil = $this->uri->segment(3);
 
-		$mobil = $this->app_admin->get_where('tb_mobil', array('id_mobil' => $id_mobil));
-
-		foreach ($mobil->result() as $tampil) 
-		{
-			$data['nama_mobil'] = $tampil->nama_mobil;
-			$data['merk_mobil'] = $tampil->merk_mobil;
-			$data['kapasitas_mobil'] = $tampil->kapasitas_mobil;
-			$data['warna_mobil'] = $tampil->warna_mobil;
-			$data['tahun_mobil'] = $tampil->tahun_mobil;
-			$data['harga_sewa'] = $tampil->harga_sewa;
-			$data['plat_mobil'] = $tampil->plat_mobil;
-			$data['transmisi_mobil'] = $tampil->transmisi_mobil;
-			$data['gambar'] = $tampil->gambar;
-			$data['status_mobil'] = $tampil->status_mobil;
-			$data['status_sewa'] = $tampil->status_sewa;
-			$data['deskripsi_mobil'] = $tampil->deskripsi_mobil;
-			$data['fasilitas_mobil'] = $tampil->fasilitas_mobil;
-
-
+		// // $mobil = $this->app_admin->getIdMobil(array('id_mobil' => $id_mobil));
+		// $idmobil = $id;
+		$mobil = $this->app_admin->getIdMobil($id);
+		foreach ($mobil as $mobs) {
+			$data['id_mobil'] = $mobs->id_mobil;
+			$data['nama_mobil'] = $mobs->nama_mobil;
+			$data['nama_merek'] = $mobs->nama_merek;
+			$data['kapasitas_mobil'] = $mobs->kapasitas_mobil;
+			$data['warna_mobil'] = $mobs->warna_mobil;
+			$data['tahun_mobil'] = $mobs->tahun_mobil;
+			$data['harga_sewa'] = $mobs->harga_sewa;
+			$data['plat_mobil'] = $mobs->plat_mobil;
+			$data['transmisi_mobil'] = $mobs->transmisi_mobil;
+			$data['gambar'] = $mobs->gambar;
+			$data['status_mobil'] = $mobs->status_mobil;
+			$data['status_sewa'] = $mobs->status_sewa;
+			$data['deskripsi_mobil'] = $mobs->deskripsi_mobil;
+			$data['fasilitas_mobil'] = $mobs->fasilitas_mobil;
 		}
+		// foreach ($mobil as $tampil) 
+		// {
+		// 	$data['id_mobil'] = $tampil->id_mobil;
+		// 	$data['nama_mobil'] = $tampil->nama_mobil;
+		// 	$data['merk_mobil'] = $tampil->nama_merek;
+		// 	$data['kapasitas_mobil'] = $tampil->kapasitas_mobil;
+		// 	$data['warna_mobil'] = $tampil->warna_mobil;
+		// 	$data['tahun_mobil'] = $tampil->tahun_mobil;
+		// 	$data['harga_sewa'] = $tampil->harga_sewa;
+		// 	$data['plat_mobil'] = $tampil->plat_mobil;
+		// 	$data['transmisi_mobil'] = $tampil->transmisi_mobil;
+		// 	$data['gambar'] = $tampil->gambar;
+		// 	$data['status_mobil'] = $tampil->status_mobil;
+		// 	$data['status_sewa'] = $tampil->status_sewa;
+		// 	$data['deskripsi_mobil'] = $tampil->deskripsi_mobil;
+		// 	$data['fasilitas_mobil'] = $tampil->fasilitas_mobil;
+		// }
 
 		$this->template->admin('admin/isi_detailmobil', $data);
 	}
 
-	public function update_mobil()
+	public function update_mobil($id)
 	{
 		$id_mobil = $this->uri->segment(3);
 
@@ -156,7 +172,7 @@ class Mobil extends CI_Controller {
 
 			$mobil = array (
 				'nama_mobil' => $this->input->post('nama_mobil', TRUE),
-				'merk_mobil' => $this->input->post('merk_mobil', TRUE),
+				'id_merek' => $this->input->post('id_merek', TRUE),
 				'deskripsi_mobil' => $this->input->post('deskripsi_mobil', TRUE),
 				'tahun_mobil' => $this->input->post('tahun_mobil', TRUE),
 				'kapasitas_mobil' => $this->input->post('kapasitas_mobil', TRUE),
@@ -168,39 +184,51 @@ class Mobil extends CI_Controller {
 				'status_mobil' => $this->input->post('status_mobil', TRUE),
 				'fasilitas_mobil' => $this->input->post('fasilitas_mobil',    TRUE),
 			);
+
+// //cek gambar apakah kosong ?
+
+// 			if($this->upload->do_upload('foto') == NULL){
+
+
+
+// 				$this->app_admin->update('tb_mobil', $mobil, array('id_mobil' => $id_mobil));
+
+
+// 			}else{
+// 				    $error = array('error' => $this->upload->display_errors());
+// 				    $this->session->set_flashdata('error',$error['error']);
+// 				    redirect(current_url());
+// 				};
+	//proses upload
+
+				if ($this->upload->do_upload('foto')) 
+				{
+
+					$gbr = $this->upload->data(); 
+
+
+					// $this->load->helper("file");
+					// delete_files('./assets/upload'.$this->input->post('gambar_lama', TRUE));
+
+					// $path = './assets/upload'.$this->input->post('gambar_lama', TRUE);
+					// unlink($path);
+					unlink('./assets/upload/'.$this->input->post('gambar_lama', TRUE));
+					$mobil['gambar'] = $gbr['file_name'];
+
+
+
+				} else {
+
+		  			$this->db->set('last_update', 'NOW()', FALSE);
+					$this->app_admin->update('tb_mobil', $mobil, array('id_mobil' => $id_mobil));
+
+					// echo $this->upload->display_errors('<p style="color:#fff">', '</p>');
+				}
+				
+
 //check gambar
 
-			if (!$this->upload->do_upload('foto')) 
-			{
-			    $error = array('error' => $this->upload->display_errors());
-			    $this->session->set_flashdata('error',$error['error']);
-			    redirect(current_url());
-			};
-//proses upload
-
-			if ($this->upload->do_upload('foto')) 
-			{
-
-				$gbr = $this->upload->data(); 
-
-
-				// $this->load->helper("file");
-				// delete_files('./assets/upload'.$this->input->post('gambar_lama', TRUE));
-
-				// $path = './assets/upload'.$this->input->post('gambar_lama', TRUE);
-				// unlink($path);
-				unlink('./assets/upload/'.$this->input->post('gambar_lama', TRUE));
-				$mobil['gambar'] = $gbr['file_name'];
-
-
-
-			} else {
-				$this->app_admin->update('tb_mobil', $mobil, array('id_mobil' => $id_mobil));
-
-				// echo $this->upload->display_errors('<p style="color:#fff">', '</p>');
-			}
-
-		  $this->db->set('ditambahkan', 'NOW()', FALSE);
+		  $this->db->set('last_update', 'NOW()', FALSE);
 		  $this->app_admin->update('tb_mobil', $mobil, array('id_mobil' => $id_mobil));
 
 		  $this->session->set_flashdata('success', 'Data Mobil Telah Berhasil di ubah');
@@ -208,32 +236,54 @@ class Mobil extends CI_Controller {
 
 		}
 
+		$mobil = $this->app_admin->getIdMobil($id);
+		foreach ($mobil as $mobs) {
+			$data['id_mobil'] = $mobs->id_mobil;
+			$data['nama_mobil'] = $mobs->nama_mobil;
+			$data['id_merek'] = $mobs->id_merek;
+			$data['kapasitas_mobil'] = $mobs->kapasitas_mobil;
+			$data['warna_mobil'] = $mobs->warna_mobil;
+			$data['tahun_mobil'] = $mobs->tahun_mobil;
+			$data['harga_sewa'] = $mobs->harga_sewa;
+			$data['plat_mobil'] = $mobs->plat_mobil;
+			$data['transmisi_mobil'] = $mobs->transmisi_mobil;
+			$data['gambar'] = $mobs->gambar;
+			$data['status_mobil'] = $mobs->status_mobil;
+			$data['status_sewa'] = $mobs->status_sewa;
+			$data['deskripsi_mobil'] = $mobs->deskripsi_mobil;
+			$data['fasilitas_mobil'] = $mobs->fasilitas_mobil;
+		}
+
+		$data['header_tambahmobil'] = "Update  Mobil";
+		$data['cek']= $this->app_admin->getAll();
+
+		$this->template->admin('admin/form_updatemobil', $data);
+	}
+	function hapus($id){
+
+
+
 		$mobil = $this->app_admin->get_where('tb_mobil', array('id_mobil' => $id_mobil));
+
+
+		$where = array('id_mobil' => $id);
 
 		foreach ($mobil->result() as $tampil ) {
 			# code...
 
-
-		$data['nama_mobil'] = $tampil->nama_mobil;
-		$data['merk_mobil'] = $tampil->merk_mobil;
-		$data['kapasitas_mobil'] = $tampil->kapasitas_mobil;
-		$data['warna_mobil'] = $tampil->warna_mobil;
-		$data['tahun_mobil'] = $tampil->tahun_mobil;
-		$data['harga_sewa'] = $tampil->harga_sewa;
-		$data['plat_mobil'] = $tampil->plat_mobil;
-		$data['transmisi_mobil'] = $tampil->transmisi_mobil;
-		$data['status_mobil'] = $tampil->status_mobil;
-		$data['status_sewa'] = $tampil->status_sewa;
-		$data['deskripsi_mobil'] = $tampil->deskripsi_mobil;
-		$data['fasilitas_mobil'] = $tampil->fasilitas_mobil;
 		$data['gambar'] = $tampil->gambar;
 
 
 		}
 
-		$data['header_tambahmobil'] = "Update  Mobil";
+		$this->app_admin->hapus_data($where,'tb_mobil');
 
-		$this->template->admin('admin/form_tambahmobil', $data);
+		unlink('./assets/upload/'.$gambar);
+
+
+		$this->session->set_flashdata('success' ,'Data Mobil Berhasil di hapus');
+
+		redirect('mobil');
 	}
 
 }

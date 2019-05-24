@@ -2,7 +2,7 @@
               <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>Table Data Mobil <small><?php echo $this->session->userdata("nama"); ?></small></h2>
+                    <h2>Table Data user <small><?php echo $this->session->userdata("nama"); ?></small></h2>
                     <ul class="nav navbar-right panel_toolbox">
                       <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                       </li>
@@ -19,31 +19,29 @@
                       </li>
                     </ul>
                     <div class="clearfix"></div>
+
                   </div>
                   <div class="x_content">
-                    <p class="text-muted font-13 m-b-30">
-                      Di bawah ini merupakan data dari mobil yang ada.
-                    </p>
-<?php 
-  
-     if ($this->session->flashdata('success')){
-
+  <?php if($this->session->flashdata('success')){
     echo '<div class="alert alert-success alert-message">';
     echo $this->session->flashdata('success');
     echo '</div>';
+  } ?>
 
-  }
+              <a href="<?php echo base_url().'user/tambah_user' ?>" class="btn btn-success"><i class="fa fa-plus"></i> Tambah User Baru</a>
 
- ?>
+                    <p class="text-muted font-13 m-b-30">
+                      Di bawah ini merupakan data dari user yang ada.
+                    </p>
                     <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
                       <thead>
                         <tr>
                           <th>No.</th>
-                          <th>Nama Mobil</th>
-                          <th>Merk</th>
-                          <th>Tahun</th>
-                          <th>Harga Sewa</th>
-                          <th>Plat</th>
+                          <th>Username</th>
+                          <th>Nama Lengkap</th>
+                          <th>NIK</th>
+                          <th>No Telp</th>
+                          <th>Jenis Kelamin</th>
                           <th>Status</th>
                           <th>Action</th>
 
@@ -54,31 +52,40 @@
                     <?php 
 
                     $no = 1;
-                    foreach ($data as $mobil) : ?>
+                    foreach ($data->result() as $user) : ?>
 
                         <tr>
                           <td><?php echo $no++; ?>.</td>
-                          <td><?php echo $mobil->nama_mobil; ?></td>
-                          <td><?php echo $mobil->nama_merek; ?></td>
-                          <td><?php echo $mobil->tahun_mobil; ?></td>
-                          <td>Rp.<?php echo number_format ($mobil->harga_sewa,0,',','.'); ?></td>
-                          <td><?php echo $mobil->plat_mobil; ?>	</td>
-                          <td>
+                          <td><?php echo $user->username; ?></td>
+                          <td><?php echo $user->nama; ?></td>
+                          <td><?php echo $user->nik; ?></td>
+                          <td><?php echo $user->no_hp; ?></td>
+                          <td>                          
+                            <?php 
+                            if ($user->jenis_kelamin == 1) {
+                              echo '<label class="label-default" style="color:white; padding:3px 5px;">laki Laki</label>';
 
+                            }else{
+                              echo '<label class="label-default" style="color:white; padding:3px 5px;">Perempuan </label>';
+
+                            }
+                            ?></td>
+
+                          <td>
                           	<?php 
-                          	if ($mobil->status_sewa == 1) {
-                          		echo '<label class="label-success" style="color:white; padding:3px 5px;">Tersedia</label>';
+                          	if ($user->status == 1) {
+                          		echo '<label class="label-success" style="color:white; padding:3px 5px;">Aktif</label>';
 
                           	}else{
-                          		echo '<label class="label-danger" style="color:white; padding:3px 5px;">Di Sewa</label>';
+                          		echo '<label class="label-danger" style="color:white; padding:3px 5px;">Tidak Aktif</label>';
 
                           	}
 	                          ?>
                           	
                           </td>
                           <td>
-                          	<a href="<?php echo base_url(); ?>mobil/detail/<?php echo $mobil->id_mobil; ?>" class="btn btn-success"><i class="fa fa-search-plus"></i></a>
-                          	<a href="<?php echo base_url(); ?>mobil/update_mobil/<?php echo $mobil->id_mobil; ?>" class="btn btn-warning"><i class="fa fa-edit"></i></a>
+                          	<a href="<?php echo base_url(); ?>user/detail/<?php echo $user->id_user; ?>" class="btn btn-success"><i class="fa fa-search-plus"></i></a>
+                          	<a href="<?php echo base_url(); ?>user/update_user/<?php echo $user->id_user; ?>" class="btn btn-warning"><i class="fa fa-edit"></i></a>
                           </td>
 
 

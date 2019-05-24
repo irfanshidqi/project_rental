@@ -2,7 +2,39 @@
     <script src="<?php echo base_url(); ?>admin_assets/js/jquery.min.js"></script>
     <!-- Bootstrap -->
     <script src="<?php echo base_url(); ?>admin_assets/js/bootstrap.min.js"></script>
+    <!-- iCheck -->
+    <script src="<?php echo base_url(); ?>admin_assets/iCheck/icheck.min.js"></script>
+    <!-- FastClick -->
+    <script src="<?php echo base_url(); ?>admin_assets/fastclick/lib/fastclick.js"></script>
+    <!-- NProgress -->
+    <script src="<?php echo base_url(); ?>admin_assets/nprogress/nprogress.js"></script>
+    <!-- bootstrap-progressbar -->
+    <script src="<?php echo base_url(); ?>admin_assets/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
+    <!-- iCheck -->
+    <script src="<?php echo base_url(); ?>admin_assets/iCheck/icheck.min.js"></script>
+    <!-- bootstrap-daterangepicker -->
+    <script src="<?php echo base_url(); ?>admin_assets/js/moment/moment.min.js"></script>
+    <script src="<?php echo base_url(); ?>admin_assets/js/datepicker/daterangepicker.js"></script>
+    <!-- bootstrap-wysiwyg -->
+    <script src="<?php echo base_url(); ?>admin_assets/bootstrap-wysiwyg/js/bootstrap-wysiwyg.min.js"></script>
 
+    <script src="<?php echo base_url(); ?>admin_assets/jquery.hotkeys/jquery.hotkeys.js"></script>
+    
+    <script src="<?php echo base_url(); ?>admin_assets/google-code-prettify/src/prettify.js"></script>
+    <!-- jQuery Tags Input -->
+    <script src="<?php echo base_url(); ?>admin_assets/jquery.tagsinput/src/jquery.tagsinput.js"></script>
+    <!-- Switchery -->
+    <script src="<?php echo base_url(); ?>admin_assets/switchery/dist/switchery.min.js"></script>
+    <!-- Select2 -->
+    <script src="<?php echo base_url(); ?>admin_assets/select2/dist/js/select2.full.min.js"></script>
+    <!-- Parsley -->
+    <script src="<?php echo base_url(); ?>admin_assets/parsleyjs/dist/parsley.min.js"></script>
+    <!-- Autosize -->
+    <script src="<?php echo base_url(); ?>admin_assets/autosize/dist/autosize.min.js"></script>
+    <!-- jQuery autocomplete -->
+    <script src="<?php echo base_url(); ?>admin_assets/devbridge-autocomplete/dist/jquery.autocomplete.min.js"></script>
+    <!-- starrr -->
+    <script src="<?php echo base_url(); ?>admin_assets/starrr/dist/starrr.js"></script>
     <!-- Datatables -->
     <script src="<?php echo base_url(); ?>admin_assets/datatables.net/js/jquery.dataTables.min.js"></script>
     <script src="<?php echo base_url(); ?>admin_assets/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
@@ -19,6 +51,10 @@
     <script src="<?php echo base_url(); ?>admin_assets/jszip/dist/jszip.min.js"></script>
     <script src="<?php echo base_url(); ?>admin_assets/pdfmake/build/pdfmake.min.js"></script>
     <script src="<?php echo base_url(); ?>admin_assets/pdfmake/build/vfs_fonts.js"></script>
+
+    <script src="<?php echo base_url(); ?>admin_aseets/js/jquery.timepicker.min.css"></script>
+
+
 
     <!-- Datatables -->
     <script>
@@ -85,6 +121,24 @@
         TableManageButtons.init();
       });
     </script>
+<!-- javascript numberformat -->
+
+<script type="text/javascript">
+  
+  $(function () {
+    $('#harga_sewa').on('click', function () {
+        var x = $('#num').val();
+        $('#num').val(addCommas(x));
+    });
+});
+ 
+function addCommas(x) {
+    var parts = x.toString().split(".");
+    parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    return parts.join(".");
+}
+</script>
+
     <!-- /Datatables -->
     
     <!-- Custom Theme Scripts -->
@@ -92,3 +146,82 @@
     <script type="text/javascript"> 
 		$('.alert-message').alert().delay(4000).slideUp('slow');
     </script>
+<!-- ajax dropdown  -->
+    <script type="text/javascript">
+  
+
+      $(document).ready(function(){
+
+        $(document).on('change', '#merek_mobil', function(){
+
+          var tb_mobil =$(this).val();
+
+          $.ajax({
+
+            url: 'http://localhost/tugas_rental/rental_mobil/transaksi/tipe_mobil',
+            method: 'post',
+            data: {
+                tb_mobil: tb_mobil
+            },
+            dataType: 'json',
+            success: function(response){
+              console.log(response);
+
+              $("#tipe_mobil").empty();
+
+              var list = $("#tipe_mobil");
+              $.each(response, function(index, item){
+
+                // list.append(new Option(item.nama_mobil, item.id_mobil));
+                list.append('<Option value="'+item.id_mobil+'">'+item.nama_mobil+'</Option>');
+
+                if(item.length >= 1){
+
+                   $('#tipe_mobil').change(function(){
+
+                   var idnya = $('#tipe_mobil').val();
+
+                   $.ajax({
+                    url: 'http://localhost/tugas_rental/rental_mobil/transaksi/getharga',
+                    method: 'post',
+                    data: {id_mobil:idnya},
+                    success: function(data){
+                      var halo = JSON.parse(data);
+                      // console.log(halo[0].harga_sewa);
+                      $('#harga_sewa').val(halo[0].harga_sewa);
+                    }
+                   });
+
+                })
+                } else {
+                  $('#tipe_mobil').change(function(){
+
+                   var idnya = $('#tipe_mobil').val();
+
+                   $.ajax({
+                    url: 'http://localhost/tugas_rental/rental_mobil/transaksi/getharga',
+                    method: 'post',
+                    data: {id_mobil:idnya},
+                    success: function(data){
+                      var halo = JSON.parse(data);
+
+                      // console.log(halo[0].harga_sewa);
+                      $('#harga_sewa').val(halo[0].harga_sewa);
+                    }
+                   });
+
+                })
+                }
+
+              });
+            }
+
+          })
+
+        });
+
+
+      });
+    </script>
+
+

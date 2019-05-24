@@ -11,7 +11,17 @@
     <!-- Font Awesome -->
     <link href="<?php echo base_url(); ?>admin_assets/font-awesome/css/font-awesome.min.css" rel="stylesheet">
     <!-- iCheck -->
-    <link href="<?php echo base_url(); ?>admin_aseets/iCheck/skins/flat/green.css" rel="stylesheet">
+    <!-- bootstrap-wysiwyg -->
+    <link href="<?php echo base_url(); ?>admin_assets/google-code-prettify/bin/prettify.min.css" rel="stylesheet">
+    <!-- Select2 -->
+    <link href="<?php echo base_url(); ?>admin_assets/select2/dist/css/select2.min.css" rel="stylesheet">
+    <!-- Switchery -->
+    <link href="<?php echo base_url(); ?>admin_assets/switchery/dist/switchery.min.css" rel="stylesheet">
+    <!-- starrr -->
+    <link href="<?php echo base_url(); ?>admin_assets/starrr/dist/starrr.css" rel="stylesheet">
+    
+
+
     <!-- Datatables -->
     <link href="<?php echo base_url(); ?>admin_assets/datatables.net-bs/css/dataTables.bootstrap.min.css" rel="stylesheet">
     <link href="<?php echo base_url(); ?>admin_assets/datatables.net-buttons-bs/css/buttons.bootstrap.min.css" rel="stylesheet">

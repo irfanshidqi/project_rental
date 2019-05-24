@@ -20,12 +20,14 @@
                     <ul class="nav child_menu">
                       <li><a href="<?= base_url(); ?>mobil/tambah_mobil">Tambah Mobil</a></li>
                       <li><a href="<?php echo base_url() ?>mobil/index">Data Mobil</a></li>
+                      <li><a href="<?php echo base_url() ?>supir">Data Supir</a></li>
+
 
                     </ul>
                   </li>
                   <li><a><i class="fa fa-user"></i> User <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="#">Admin</a></li>
+                      <li><a href="<?php echo base_url().'user' ?>">Data User</a></li>
                       <li><a href="#">Hak Akses</a></li>
                       <li><a href="#">List User</a></li>
 
@@ -33,17 +35,16 @@
                   </li>
                   <li><a><i class="fa fa-shopping-cart"></i> Pesanan Mobil <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="#">Pesanan</a></li>
+                      <li><a href="<?php echo base_url().'transaksi/tambah_transaksi' ?>">Tambah Transaksi</a></li>
                       <li><a href="#">Proses Peminjaman</a></li>
                       <li><a href="#">Transaksi Selesei</a></li>
 
                     </ul>
                   </li>
-                  <li><a><i class="fa fa-shopping-cart"></i> Laporan <span class="fa fa-chevron-down"></span></a>
+                  <li><a><i class="fa fa-book"></i> Laporan <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="#">Pesanan</a></li>
-                      <li><a href="#">Proses Peminjaman</a></li>
-                      <li><a href="#">Transaksi Selesei</a></li>
+                      <li><a href="<?php echo base_url().'laporan' ?>">Transaksi Selesai</a></li>
+
 
                     </ul>
                   </li>
@@ -109,7 +110,7 @@
                   <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
                     <li>
                       <a>
-                        <span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
+                        <span class="image"><img src="" alt="Profile Image" /></span>
                         <span>
                           <span>John Smith</span>
                           <span class="time">3 mins ago</span>
@@ -121,7 +122,7 @@
                     </li>
                     <li>
                       <a>
-                        <span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
+                        <span class="image"><img src="" alt="Profile Image" /></span>
                         <span>
                           <span>John Smith</span>
                           <span class="time">3 mins ago</span>
@@ -133,7 +134,7 @@
                     </li>
                     <li>
                       <a>
-                        <span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
+                        <span class="image"><img src="" alt="Profile Image" /></span>
                         <span>
                           <span>John Smith</span>
                           <span class="time">3 mins ago</span>
@@ -145,7 +146,7 @@
                     </li>
                     <li>
                       <a>
-                        <span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
+                        <span class="image"><img src="" alt="Profile Image" /></span>
                         <span>
                           <span>John Smith</span>
                           <span class="time">3 mins ago</span>

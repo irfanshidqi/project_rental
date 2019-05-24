@@ -57,7 +57,7 @@ if($this->session->flashdata('error'))
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Nama Mobil <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="text" id="nama_mobil" name="nama_mobil" value="<?php echo $nama_mobil; ?>" required="required" class="form-control col-md-7 col-xs-12">
+                          <input type="text" id="nama_mobil" name="nama_mobil" value="<?php echo $nama_mobil; ?> " required="required" class="form-control col-md-7 col-xs-12">
                         </div>
                       </div>
                       <div class="form-group">
@@ -66,7 +66,7 @@ if($this->session->flashdata('error'))
                         <div class="col-md-6 col-sm-6 col-xs-12">
                           <select class="form-control col-md-7 col-xs-12" name="id_merek" required="required">
                             <?php foreach ($cek as $ha) {?>
-                            <option  value="<?= $ha->id_merek ?>"><?= $ha->nama_merek ?></option>
+                            <option <?php if($id_merek == $ha->id_merek) { echo "selected";} ?> value="<?= $ha->id_merek ?>"><?= $ha->nama_merek ?></option>
                             <?php } ?>
                           </select>
                         </div>
@@ -82,7 +82,7 @@ if($this->session->flashdata('error'))
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Warna Mobil <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="text" id="warna_mobil" name="warna_mobil" value=" <?php echo $warna_mobil; ?>" required="required" class="form-control col-md-7 col-xs-12">
+                          <input type="text" id="warna_mobil" name="warna_mobil" value="<?php echo $warna_mobil; ?>" required="required" class="form-control col-md-7 col-xs-12">
                         </div>
                       </div>
                       <div class="form-group">
@@ -103,7 +103,7 @@ if($this->session->flashdata('error'))
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Plat Mobil <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="text" id="plat_mobil" name="plat_mobil" value=" <?php echo $plat_mobil; ?>"  required="required" class="form-control col-md-7 col-xs-12">
+                          <input type="text" id="plat_mobil" name="plat_mobil" value="<?php echo $plat_mobil; ?>"  required="required" class="form-control col-md-7 col-xs-12">
                         </div>
                       </div>
                       <div class="form-group">

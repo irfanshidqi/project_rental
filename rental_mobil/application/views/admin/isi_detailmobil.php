@@ -28,7 +28,7 @@
 									</tr>
 									<tr>
 										<td width="100px">Merk</td>
-										<td> : <?php echo $merk_mobil; ?></td>
+										<td> : <?php echo $nama_merek; ?></td>
 									</tr>
 									<tr>
 										<td width="100px">Kapasitas</td>
@@ -100,8 +100,31 @@
 	                        ?></td>
 									</tr>
 								</table>
-								<a href="#" class="btn btn-warning" >Edit</a>
+								<a href="#myModal" class="btn btn-danger" data-toggle="modal" >Delete</a>
+								<a href="<?php echo base_url(); ?>mobil/update_mobil/<?php echo $id_mobil; ?>" class="btn btn-warning" >Edit</a>
 								<a href="#" class="btn btn-default" onclick="window.history.go(-1)" >Kembali</a>
+
+<!-- Modal HTML -->
+<div id="myModal" class="modal fade">
+	<div class="modal-dialog modal-confirm">
+		<div class="modal-content">
+			<div class="modal-header">
+				<div class="icon-box">
+					<i class="glyphicon glyphicon-ban-circle">	</i>
+				</div>				
+				<h4 class="modal-title">Apakah kamu yakin ?</h4>	
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+			</div>
+			<div class="modal-body">
+				<p>Apakah kamu ingin menghapus data ini ? Setelah di hapus data tidak dapat di kembalikan.</p>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-info" data-dismiss="modal">Cancel</button>
+				<a href="<?php echo base_url(); ?>mobil/hapus/<?php echo $id_mobil; ?>" class="btn btn-danger" >Delete</a>
+			</div>
+		</div>
+	</div>
+</div>  
 
 
 							</div>
