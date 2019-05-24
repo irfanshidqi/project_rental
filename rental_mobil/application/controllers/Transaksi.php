@@ -36,6 +36,7 @@ class Transaksi extends CI_Controller {
             'id_mobil' => $this->input->post('tipe_mobil', TRUE),
             'status_transaksi' => 1,
             'harga' => $this->input->post('sewa', TRUE),
+            'total_harga' => $this->input->post('total_harga', TRUE),
             'nama' => $this->input->post('nama', TRUE),
             'no_hp' => $this->input->post('no_hp', TRUE),
             'email' => $this->input->post('email', TRUE),
@@ -43,10 +44,8 @@ class Transaksi extends CI_Controller {
             'tgl_order' => $this->input->post('tgl_start', TRUE),
             'waktu_order' => $this->input->post('waktu', TRUE),
             'tgl_akhir' => $akhir_penyewaan,
+            'id_bank' => $this->input->post('bank', TRUE),
             'lama_peminjaman' => $this->input->post('lama_penyewaan', TRUE)
-
-
-
 
 
 
@@ -61,6 +60,8 @@ class Transaksi extends CI_Controller {
      }else{
 
      }
+
+        $data['bank'] = $this->app_admin->getbank();
 
 
         $data['id_tr'] = $this->app_admin->get_id_transaksi();
@@ -87,4 +88,6 @@ class Transaksi extends CI_Controller {
              $data = $this->app_admin->getharga($datanya);
             echo json_encode($data);
     }
+
+
 }

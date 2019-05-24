@@ -107,6 +107,16 @@ class App_Admin extends CI_Model {
   		return $this->db->get('tb_mobil')->result_array();
   	}
 
+  	function getbank(){
+  		$this->db->select('*');
+  		$this->db->from('tb_bank');
+
+  		$query = $this->db->get();
+  		return $query->result();
+
+
+  	}
+
 }
 
 

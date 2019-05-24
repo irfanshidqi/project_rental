@@ -129,15 +129,14 @@
                       <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">BANK</label>
                         <div class="col-md-9 col-sm-9 col-xs-12">
-                          <select class="select2_single form-control" tabindex="-1">
+                          <select class="select2_single form-control" name="bank" tabindex="-1">
                             <option>- Bank -</option>
-                            <option value="AK">Alaska</option>
-                            <option value="HI">Hawaii</option>
-                            <option value="CA">California</option>
-                            <option value="NV">Nevada</option>
-                            <option value="OR">Oregon</option>
-                            <option value="WA">Washington</option>
-                            <option value="AZ">Arizona</option>
+                            <?php foreach ($bank as $key ): ?>
+                            <option value="<?php echo $key->id_bank ?> " ><?php echo $key->nama_bank ?></option>
+
+                              
+                            <?php endforeach ?>
+
 
                           </select>
                         </div>
@@ -146,7 +145,7 @@
                       <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Total Harga</label>
                         <div class="col-md-9 col-sm-9 col-xs-12">
-                          <input type="number" class="form-control" id="total_harga" readonly="readonly" placeholder="Total Harga" >
+                          <input type="number" class="form-control" id="total_harga" name="total_harga" readonly="readonly" placeholder="Total Harga" >
                         </div>
                       </div>
 
