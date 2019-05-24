@@ -158,7 +158,7 @@ function addCommas(x) {
 
           $.ajax({
 
-            url: 'http://localhost/tugas_rental/rental_mobil/transaksi/tipe_mobil',
+            url: 'http://localhost/project_rental/rental_mobil/transaksi/tipe_mobil',
             method: 'post',
             data: {
                 tb_mobil: tb_mobil
@@ -182,7 +182,7 @@ function addCommas(x) {
                    var idnya = $('#tipe_mobil').val();
 
                    $.ajax({
-                    url: 'http://localhost/tugas_rental/rental_mobil/transaksi/getharga',
+                    url: 'http://localhost/project_rental/rental_mobil/transaksi/getharga',
                     method: 'post',
                     data: {id_mobil:idnya},
                     success: function(data){
@@ -199,7 +199,7 @@ function addCommas(x) {
                    var idnya = $('#tipe_mobil').val();
 
                    $.ajax({
-                    url: 'http://localhost/tugas_rental/rental_mobil/transaksi/getharga',
+                    url: 'http://localhost/project_rental/rental_mobil/transaksi/getharga',
                     method: 'post',
                     data: {id_mobil:idnya},
                     success: function(data){
@@ -223,5 +223,22 @@ function addCommas(x) {
 
       });
     </script>
+
+    <!-- hitung Total harga -->
+    <script type="text/javascript">
+      
+
+    document.getElementById("tipe_mobil").onchange = notEmpty;
+
+
+   function gettotal_harga(){
+      var tot1=document.getElementById('harga_sewa').value;
+      var tot2=document.getElementById('lama').value;
+      var tot3=parseFloat(tot1)* parseFloat(tot2);
+      
+      document.getElementById('total_harga').value=tot3;
+  
+   }
+</script>   
 
 

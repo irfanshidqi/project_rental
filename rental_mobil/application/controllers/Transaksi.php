@@ -21,10 +21,13 @@ class Transaksi extends CI_Controller {
     {
         if ($this->input->post('submit', TRUE) == 'Submit') 
         {
+
         $id_trans = $this->app_admin->get_id_transaksi();
 
+        $awal_penyewaan =  $this->input->post('tgl_start');
+
         $lama_penyewaan = $this->input->post('lama_penyewaan');
-        $akhir_penyewaan  = date('Y-m-d', strtotime("+".$lama_penyewaan." day", strtotime($sdate)));
+        $akhir_penyewaan  = date('Y-m-d', strtotime("+".$lama_penyewaan." day", strtotime($awal_penyewaan)));
 
         $transaksi = array(
 
@@ -39,7 +42,7 @@ class Transaksi extends CI_Controller {
             'tujuan' => $this->input->post('tujuan', TRUE),
             'tgl_order' => $this->input->post('tgl_start', TRUE),
             'waktu_order' => $this->input->post('waktu', TRUE),
-            'tgl_akhir' => $this->input->post('waktu', TRUE)
+            'tgl_akhir' => $akhir_penyewaan,
             'lama_peminjaman' => $this->input->post('lama_penyewaan', TRUE)
 
 

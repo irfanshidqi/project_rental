@@ -64,7 +64,6 @@
                           <select class="select2_single form-control" tabindex="-1" name="tipe_mobil" id="tipe_mobil">
                             <option  value="">Tipe-tipe mobil</option>
 
-                            <option  value="">Tipe-tipe mobil</option>
   
                           </select>
                         </div>
@@ -121,7 +120,7 @@
                       <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Lama Penyewaan</label>
                         <div class="col-md-9 col-sm-9 col-xs-12">
-                          <input type="number" class="form-control" placeholder="Lama sewa" name="lama_penyewaan" >
+                          <input type="number" class="form-control" placeholder="Lama sewa" id="lama" name="lama_penyewaan" onChange="gettotal_harga()" >
                         </div>
                       </div>
 
@@ -147,7 +146,7 @@
                       <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Total Harga</label>
                         <div class="col-md-9 col-sm-9 col-xs-12">
-                          <input type="number" class="form-control" readonly="readonly" ">
+                          <input type="number" class="form-control" id="total_harga" readonly="readonly" placeholder="Total Harga" >
                         </div>
                       </div>
 

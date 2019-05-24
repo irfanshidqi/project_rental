@@ -1,5 +1,4 @@
-            <div class="page-title">
-              <div class="col-md-12 col-sm-12 col-xs-12">
+
                 <div class="x_panel">
                   <div class="x_title">
                     <h2>Table Data Mobil <small><?php echo $this->session->userdata("nama"); ?></small></h2>
@@ -95,5 +94,3 @@
                 </div>
               </div>
             </div>
-          </div>
-        </div>
