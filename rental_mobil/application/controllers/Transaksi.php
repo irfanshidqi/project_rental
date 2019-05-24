@@ -24,6 +24,7 @@ class Transaksi extends CI_Controller {
 
         $id_trans = $this->app_admin->get_id_transaksi();
 
+
         $awal_penyewaan =  $this->input->post('tgl_start');
 
         $lama_penyewaan = $this->input->post('lama_penyewaan');
@@ -55,8 +56,31 @@ class Transaksi extends CI_Controller {
          $this->db->set('created', 'NOW()', FALSE);
          $this->app_admin->insert('tb_transaksi', $transaksi);
 
+         // $invoice = $this->app_admin->getinvoice($id);
+
+         // foreach($invoice as $inv){
+         //    $data['id_transaksi'] = $inv->id_transaksi;
+         //    $data['nama_mobil'] = $inv->nama_mobil;
+         //    $data['merek_mobil'] = $inv->nama_merek;
+         //    $data['nama'] = $inv->nama;
+         //    $data['no_hp'] = $inv->no_hp;
+         //    $data['email'] = $inv->email;
+         //    $data['tujuan'] = $inv->tujuan;
+         //    $data['tgl_order'] = $inv->tgl_order;
+         //    $data['waktu_order'] = $inv->waktu_order;
+         //    $data['tgl_akhir'] = $inv->tgl_akhir;
+         //    $data['lama_peminjaman'] = $inv->lama_peminjaman;
+         //    $data['harga_sewa'] = $inv->harga;
+         //    $data['total_harga'] = $inv->total_harga;
+         //    $data['created'] = $inv->created;
+
+
+
+         // }
+
          $this->session->set_flashdata('success', 'Transaksi Telah Berhasil di tambahkan');
-         redirect(current_url());
+         redirect("transaksi/invoice/".$id_trans);
+
      }else{
 
      }
@@ -87,6 +111,36 @@ class Transaksi extends CI_Controller {
         $datanya = ['id_mobil' => $this->input->post('id_mobil') ];
              $data = $this->app_admin->getharga($datanya);
             echo json_encode($data);
+    }
+
+        public function invoice($id_trans)
+    {
+
+         $invoice = $this->app_admin->getinvoice($id_trans);
+
+         foreach($invoice as $inv){
+            $data['id_transaksi'] = $inv->id_transaksi;
+            $data['nama_mobil'] = $inv->nama_mobil;
+            $data['plat'] = $inv->plat_mobil;
+            $data['merek_mobil'] = $inv->nama_merek;
+            $data['nama'] = $inv->nama;
+            $data['no_hp'] = $inv->no_hp;
+            $data['email'] = $inv->email;
+            $data['tujuan'] = $inv->tujuan;
+            $data['tgl_order'] = $inv->tgl_order;
+            $data['waktu_order'] = $inv->waktu_order;
+            $data['tgl_akhir'] = $inv->tgl_akhir;
+            $data['lama_peminjaman'] = $inv->lama_peminjaman;
+            $data['harga_sewa'] = $inv->harga;
+            $data['total_harga'] = $inv->total_harga;
+            $data['created'] = $inv->created;
+
+
+
+         }
+
+        // $data['data'] = $this->app_admin->getMobil();
+        $this->template->admin('admin/isi_invoice', $data);
     }
 
 
