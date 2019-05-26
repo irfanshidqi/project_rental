@@ -121,23 +121,6 @@
         TableManageButtons.init();
       });
     </script>
-<!-- javascript numberformat -->
-
-<script type="text/javascript">
-  
-  $(function () {
-    $('#harga_sewa').on('click', function () {
-        var x = $('#num').val();
-        $('#num').val(addCommas(x));
-    });
-});
- 
-function addCommas(x) {
-    var parts = x.toString().split(".");
-    parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-    return parts.join(".");
-}
-</script>
 
     <!-- /Datatables -->
     
@@ -241,4 +224,47 @@ function addCommas(x) {
    }
 </script>   
 
+<!-- ajax java script timer invoice -->
 
+<script type="text/javascript">
+
+
+function timer()
+{
+    $('#timer').load('http://localhost/project_rental/rental_mobil/transaksi/timer/<?php echo $id_transaksi;?>');
+}
+
+setInterval(timer, 1000 );
+
+
+
+
+</script>
+
+<!-- $(document).on('click', '.conf', function(){
+
+    $('#jqContent').load(bu+'public/invoice/conf_invoice/<?php echo $ivd->code_inv;?>');
+    $('#jqContent').slideDown('400');
+
+});
+
+$(document).on('submit', '#confForm', function(){
+
+    $.ajax({
+
+        url:bu+'public/invoice/process_invoice',
+        type:'POST',
+        data:new FormData(this),
+        contentType:false,
+        processData:false,
+        success:function(data)
+        {
+            alert(data);
+            window.location.href=window.location.href;
+        }
+
+    });
+
+    return false;
+
+}); -->

@@ -7,7 +7,10 @@ class Transaksi extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->library(array('template', 'form_validation'));
+//model
 		$this->load->model('app_admin');
+// HELPER
+        $this->load->helper('exDate_helper');
 	}
 
     public function index()
@@ -88,13 +91,13 @@ class Transaksi extends CI_Controller {
 
 
     }
-
+//get harga ajax
     public function getharga(){
         $datanya = ['id_mobil' => $this->input->post('id_mobil') ];
              $data = $this->app_admin->getharga($datanya);
             echo json_encode($data);
     }
-
+//get data invoice
     public function invoice($id_trans)
     {
 
@@ -123,25 +126,87 @@ class Transaksi extends CI_Controller {
             $data['harga_sewa'] = $inv->harga;
             $data['total_harga'] = $inv->total_harga;
             $data['created'] = $inv->created_inv;
+            $data['status_transaksi'] = $inv->status_transaksi;
             $data['bank'] = $inv->nama_bank;
 
          }
 
+        $time       = $this->app_admin->getinvoice($id_trans);
+        $date_now   = date('Y-m-d H:i:s');
+
+        foreach($time as $row)
+        {
+            $created_inv = $row->created_inv;
+        }
+
+        $awal  = new DateTime($created_inv);
+        $akhir = new DateTime($date_now);
+        $diff  = $awal->diff($akhir);
+
+        $var['limit']          = $diff->h;
+
         // $data['data'] = $this->app_admin->getMobil();
         $this->template->admin('admin/isi_invoice', $data);
     }
-
+//timer
     public function timer($id_trans){
 
         $inv = $this->app_admin->getinvoice($id_trans);
-        $date_now = date('Y-m-d H:i:s', NOW());
+date_default_timezone_set('Asia/Jakarta');
+        $date_now   = date('Y-m-d H:i:s');
 
-        foreach($inv as $row){
+        foreach($inv as $row)
+        {
+            $datetime = $row->created_inv;
 
-            
+            $awal  = new DateTime($datetime);
+            $akhir = new DateTime($date_now);
+            $diff  = $awal->diff($akhir);
+
+            if($diff->h > 0)
+            {
+                $this->db->where(['id_transaksi' => $row->id_transaksi]);
+                $this->db->update('tb_transaksi',['status_transaksi' => 9]);
+
+
+            echo "<div class='btn btn-danger pull-right'><i class='fa fa-credit-card'>Waktu Pembayaran Telah Habis</div>";
+
+        }else{
+
+            echo 60-$diff->i . ' Menit ';
+            echo 60-$diff->s . ' Detik ';
+            echo "<br><div class='btn btn-success pull-right'><i class='fa fa-credit-card'></i> Upload Bukti Pembayaran</div>"; 
+
         }
 
     }
+}
+//auto update status ketika timer habis
+    public function checkinv($id_trans)
+    {
+        $inv = $this->app_admin->getinvoice($id_trans);
+        date_default_timezone_set('Asia/Jakarta');
 
+        $date_now   = date('Y-m-d H:i:s');
 
+        foreach($inv as $row)
+        {
+            $datetime = $row->created_inv;
+
+            $awal  = new DateTime($datetime);
+            $akhir = new DateTime($date_now);
+            $diff  = $awal->diff($akhir);
+
+            if($diff->h > 0)
+            {
+                $this->db->where(['id_transaksi' => $row->id_transaksi]);
+                $this->db->update('tb_transaksi',['status_transaksi' => 9]);
+
+            }
+
+            
+        }
+    }
+
+// akhir controler
 }

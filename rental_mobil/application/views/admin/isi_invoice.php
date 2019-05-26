@@ -29,12 +29,31 @@
                       <div class="row">
                         <div class="col-xs-12 invoice-header">
                           <h1>
-                                          <i class="fa fa-globe"></i> Invoice.
-                                          <small class="pull-right"><?php echo $created; ?></small>
-                                      </h1>
+                                <i class="fa fa-globe"></i> Invoice.
+                                 <small class="pull-right"><?php echo $created; ?></small>
+
+                             <div class="text-center text-muted well well-sm no-shadow">
+                        <?php if($status_transaksi == 1){
+                        	echo "<small ><i class='fa fa-credit-card'></i> Menunggu Pembayaran</small>";
+                        }elseif ($status_transaksi == 2) {
+                        	echo "<small ><i class='fa fa-credit-card'></i> Menunggu Konfirmasi</small>";
+                        }elseif ($status_transaksi == 3) {
+                        	echo "<small ><i class='fa fa-credit-card'></i> Lunas</small>";
+                        }elseif ($status_transaksi == 4) {
+                        	echo "<small ><i class='fa fa-credit-card'></i> Peminjaman sedang Berjalan</small>";
+                        }elseif ($status_transaksi == 5) {
+                        	echo "<small ><i class='fa fa-credit-card'></i> Transaksi Telah Selesai</small>";
+                        }elseif ($status_transaksi == 9) {
+                        	echo "<small ><i class='fa fa-credit-card'></i> Transaksi Batal</small>";
+
+                        } ?>
+
+							</div>
+                           </h1>
                         </div>
                         <!-- /.col -->
                       </div>
+                      <br>
                       <!-- info row -->
                       <div class="row invoice-info">
                         <div class="col-sm-4 invoice-col">
@@ -174,6 +193,20 @@
                                 </tr>
                               </tbody>
                             </table>
+                            <br>
+                            <br>
+                            <br>
+                            
+             <div class="col-xs-11">
+    <?php if($status_transaksi == 1):?>
+    <div class="time-left pull-right ">
+        <span style="font-size: 17px;">Sisa Waktu Pembayaran:</span>
+        <br> 
+        <div class="text-center" id="timer"></div>
+    </div>
+    <?php else:?>
+    <?php endif;?>
+   </div>
                           </div>
                         </div>
                         <!-- /.col -->
@@ -182,10 +215,11 @@
 
                       <!-- this row will not appear when printing -->
                       <div class="row no-print">
-                        <div class="col-xs-12">
+                        <div class="col-xs-10">
                           <button class="btn btn-default" onclick="window.print();"><i class="fa fa-print"></i> Print</button>
-                          <button class="btn btn-success pull-right"><i class="fa fa-credit-card"></i> Submit Payment</button>
-                        </div>
+
+<!--                           <button class="btn btn-success pull-right"><i class="fa fa-credit-card"></i> Submit Payment</button>
+ -->                        </div>
                       </div>
                     </section>
                   </div>
