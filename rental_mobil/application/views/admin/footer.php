@@ -1,4 +1,4 @@
           <div class="pull-right">
-            Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>
+            Admin Rent Car - Rental Mobil Corporate 
           </div>
           <div class="clearfix"></div>

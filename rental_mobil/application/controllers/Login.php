@@ -29,6 +29,8 @@ class Login extends CI_Controller{
 			    	$datauser = array (
 			    		'admin' => $data->id_admin,
 			    		'username' => $data->username,
+			    		'email' => $data->email,
+			    		'no_hp' => $data->no_hp,
 			    		'nama' => $data->nama_admin,
 			    		'level' => $data->level,
 			    		'login' => TRUE

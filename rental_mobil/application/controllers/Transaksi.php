@@ -34,7 +34,7 @@ class Transaksi extends CI_Controller {
 
             'id_transaksi' => $id_trans,
             'id_merek' => $this->input->post('merek_mobil', TRUE),
-            'id_mobil' => $this->input->post('tipe_mobil', TRUE),
+            'id_mobil' => $this->input->post('tipe_mobil'),
             'status_transaksi' => 1,
             'harga' => $this->input->post('sewa', TRUE),
             'total_harga' => $this->input->post('total_harga', TRUE),
@@ -52,31 +52,13 @@ class Transaksi extends CI_Controller {
 
         );
 
+        $this->db->where('id_mobil' , $this->input->post('tipe_mobil'));
+        $this->db->update('tb_mobil',['status_sewa' => 2]);
 
-         $this->db->set('created', 'NOW()', FALSE);
+
+         $this->db->set('created_inv', 'NOW()', FALSE);
          $this->app_admin->insert('tb_transaksi', $transaksi);
 
-         // $invoice = $this->app_admin->getinvoice($id);
-
-         // foreach($invoice as $inv){
-         //    $data['id_transaksi'] = $inv->id_transaksi;
-         //    $data['nama_mobil'] = $inv->nama_mobil;
-         //    $data['merek_mobil'] = $inv->nama_merek;
-         //    $data['nama'] = $inv->nama;
-         //    $data['no_hp'] = $inv->no_hp;
-         //    $data['email'] = $inv->email;
-         //    $data['tujuan'] = $inv->tujuan;
-         //    $data['tgl_order'] = $inv->tgl_order;
-         //    $data['waktu_order'] = $inv->waktu_order;
-         //    $data['tgl_akhir'] = $inv->tgl_akhir;
-         //    $data['lama_peminjaman'] = $inv->lama_peminjaman;
-         //    $data['harga_sewa'] = $inv->harga;
-         //    $data['total_harga'] = $inv->total_harga;
-         //    $data['created'] = $inv->created;
-
-
-
-         // }
 
          $this->session->set_flashdata('success', 'Transaksi Telah Berhasil di tambahkan');
          redirect("transaksi/invoice/".$id_trans);
@@ -113,7 +95,7 @@ class Transaksi extends CI_Controller {
             echo json_encode($data);
     }
 
-        public function invoice($id_trans)
+    public function invoice($id_trans)
     {
 
          $invoice = $this->app_admin->getinvoice($id_trans);
@@ -122,6 +104,13 @@ class Transaksi extends CI_Controller {
             $data['id_transaksi'] = $inv->id_transaksi;
             $data['nama_mobil'] = $inv->nama_mobil;
             $data['plat'] = $inv->plat_mobil;
+            $data['nama_bank'] = $inv->nama_bank;
+            $data['no_rek'] =$inv->no_rekening;
+            $data['pemilik_bank'] = $inv->nama_pemilik;
+            $data['tahun_mobil'] = $inv->tahun_mobil;
+            $data['kapasitas'] = $inv->kapasitas_mobil;
+            $data['warna'] = $inv->warna_mobil;
+            $data['deskripsi'] = $inv->deskripsi_mobil;
             $data['merek_mobil'] = $inv->nama_merek;
             $data['nama'] = $inv->nama;
             $data['no_hp'] = $inv->no_hp;
@@ -133,14 +122,25 @@ class Transaksi extends CI_Controller {
             $data['lama_peminjaman'] = $inv->lama_peminjaman;
             $data['harga_sewa'] = $inv->harga;
             $data['total_harga'] = $inv->total_harga;
-            $data['created'] = $inv->created;
-
-
+            $data['created'] = $inv->created_inv;
+            $data['bank'] = $inv->nama_bank;
 
          }
 
         // $data['data'] = $this->app_admin->getMobil();
         $this->template->admin('admin/isi_invoice', $data);
+    }
+
+    public function timer($id_trans){
+
+        $inv = $this->app_admin->getinvoice($id_trans);
+        $date_now = date('Y-m-d H:i:s', NOW());
+
+        foreach($inv as $row){
+
+            
+        }
+
     }
 
 
