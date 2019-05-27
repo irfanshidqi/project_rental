@@ -148,7 +148,7 @@ class Transaksi extends CI_Controller {
         // $data['data'] = $this->app_admin->getMobil();
         $this->template->admin('admin/isi_invoice', $data);
     }
-//timer
+//timer untuk invoice
     public function timer($id_trans){
 
         $inv = $this->app_admin->getinvoice($id_trans);
