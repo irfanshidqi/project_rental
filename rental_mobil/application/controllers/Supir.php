@@ -131,7 +131,7 @@ if ($this->input->post('submit', TRUE) == 'Submit')
 			$config['upload_path'] = './assets/upload/';
 			$config['allowed_types'] = 'jpg|png|jpeg|';
 			$config['max_size'] = '2048';
-			$config['file_name'] = 'gambar'.date('Y_m_d_H_i_s');
+			$config['file_name'] = 'foto'.date('Y_m_d_H_i_s');
 
 			$this->load->library('upload', $config);
 			$this->upload->initialize($config);
