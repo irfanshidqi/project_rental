@@ -121,17 +121,26 @@ if ($this->input->post('submit', TRUE) == 'Submit')
 		$this->template->admin('admin/isi_detailsupir', $data);
 	}
 
-	public function update_supir()
+	public function update_supir($id)
 	{
 		$id_supir = $this->uri->segment(3);
 
 		if ($this->input->post('submit', TRUE) == 'Submit') 
 		{
 
+			$config['upload_path'] = './assets/upload/';
+			$config['allowed_types'] = 'jpg|png|jpeg|';
+			$config['max_size'] = '2048';
+			$config['file_name'] = 'gambar'.date('Y_m_d_H_i_s');
+
+			$this->load->library('upload', $config);
+			$this->upload->initialize($config);
+			$this->load->helper('date');
+
 
 			//insert
 
-			$datauser = array (
+			$supir = array (
 				'id_supir' => $this->input->post('id_supir', TRUE),
 				'nama_supir' => $this->input->post('nama_supir', TRUE),
 				'nik' => $this->input->post('nik', TRUE),
@@ -141,27 +150,62 @@ if ($this->input->post('submit', TRUE) == 'Submit')
 				'alamat' => $this->input->post('alamat', TRUE),
 				'tgl_lahir' => $this->input->post('tanggal_lahir', TRUE),
 				'umur' => $this->input->post('umur', TRUE),
-				'foto' => $this->input->post('foto', TRUE)
-
-
+				'foto' => $this->input->post('foto', TRUE),				
 			);
 
-//proses upload-
+// //cek gambar apakah kosong ?
 
-				// echo $this->upload->display_errors('<p style="color:#fff">', '</p>');
+// 			if($this->upload->do_upload('foto') == NULL){
+
+
+
+// 				$this->app_admin->update('tb_mobil', $mobil, array('id_mobil' => $id_mobil));
+
+
+// 			}else{
+// 				    $error = array('error' => $this->upload->display_errors());
+// 				    $this->session->set_flashdata('error',$error['error']);
+// 				    redirect(current_url());
+// 				};
+	//proses upload
+
+				if ($this->upload->do_upload('foto')) 
+				{
+
+					$gbr = $this->upload->data(); 
+
+
+					// $this->load->helper("file");
+					// delete_files('./assets/upload'.$this->input->post('gambar_lama', TRUE));
+
+					// $path = './assets/upload'.$this->input->post('gambar_lama', TRUE);
+					// unlink($path);
+					unlink('./assets/upload/'.$this->input->post('gambar_lama', TRUE));
+					$supir['foto'] = $fto['file_name'];
+
+
+
+				} else {
+
+		  			$this->db->set('last_update', 'NOW()', FALSE);
+					$this->app_admin->update('tb_supir', $supir, array('id_supir' => $id_supir));
+
+					// echo $this->upload->display_errors('<p style="color:#fff">', '</p>');
+				}
+				
+
+//check gambar
 
 		  $this->db->set('last_update', 'NOW()', FALSE);
 		  $this->app_admin->update('tb_supir', $supir, array('id_supir' => $id_supir));
 
-		  $this->session->set_flashdata('success', 'Data User Telah Berhasil di ubah');
+		  $this->session->set_flashdata('success', 'Data Mobil Telah Berhasil di ubah');
 		  redirect(current_url());
+
 		}
 
-		
-
 		$supir = $this->app_admin->getIdSupir($id);
-		foreach ($supir as $tampil) 
-		{
+		foreach ($supir as $tampil) {
 			$data['id_supir'] = $tampil->id_supir;
 			$data['nama_supir'] = $tampil->nama_supir;
 			$data['nik'] = $tampil->nik;
@@ -172,12 +216,11 @@ if ($this->input->post('submit', TRUE) == 'Submit')
 			$data['tgl_lahir'] = $tampil->tgl_lahir;
 			$data['umur'] = $tampil->umur;
 			$data['foto'] = $tampil->foto;
-
-
 		}
 
-		$data['header_updatesupir'] = "Update Supir";
-		$data['cek']=$this->app_admin->getSupir();
+		$data['header_updatesupir'] = "Update  Supir";
+		$data['cek']= $this->app_admin->getSupir();
+
 		$this->template->admin('admin/form_updatesupir', $data);
 	}
 //hapus data supir

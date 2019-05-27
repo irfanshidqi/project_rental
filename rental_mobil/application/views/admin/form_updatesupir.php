@@ -126,15 +126,12 @@ if($this->session->flashdata('error'))
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Foto Sopir <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <?php if (isset($foto)){
-                            echo '<input type="hidden" name="gambar_lama" value="'.$foto.'">';
-                            echo '<img src="'.base_url().'assets/upload/'.$foto.'" width="30%">';
-
+                          <?php if (isset($fto)){
+                            echo '<input type="hidden" name="foto" value="'.$fto.'">';
+                            echo '<img src="'.base_url().'assets/upload/'.$fto.'" width="30%">';
                           } ?>
-
                           <div class="clearfix"></div>
                           <br>
-                            
                           <input type="file" id="first-name" name="foto"  class="form-control col-md-7 col-xs-12">
                         </div>
                       </div>
