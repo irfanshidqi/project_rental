@@ -121,9 +121,9 @@ if ($this->input->post('submit', TRUE) == 'Submit')
 		$this->template->admin('admin/isi_detailsupir', $data);
 	}
 
-	public function update_user()
+	public function update_supir()
 	{
-		$id_user = $this->uri->segment(3);
+		$id_supir = $this->uri->segment(3);
 
 		if ($this->input->post('submit', TRUE) == 'Submit') 
 		{
@@ -151,7 +151,7 @@ if ($this->input->post('submit', TRUE) == 'Submit')
 				// echo $this->upload->display_errors('<p style="color:#fff">', '</p>');
 
 		  $this->db->set('last_update', 'NOW()', FALSE);
-		  $this->app_admin->update('tb_supir', $datauser, array('id_supir' => $id_supir));
+		  $this->app_admin->update('tb_supir', $supir, array('id_supir' => $id_supir));
 
 		  $this->session->set_flashdata('success', 'Data User Telah Berhasil di ubah');
 		  redirect(current_url());
@@ -159,42 +159,53 @@ if ($this->input->post('submit', TRUE) == 'Submit')
 
 		
 
-		$user = $this->app_admin->get_where('tb_user', array('id_user' => $id_user));
-
-		foreach ($user->result() as $tampil) 
+		$supir = $this->app_admin->getIdSupir($id);
+		foreach ($supir as $tampil) 
 		{
-			$data['id_user'] = $tampil->id_user;
-			$data['username'] = $tampil->username;
-			$data['nama'] = $tampil->nama;
+			$data['id_supir'] = $tampil->id_supir;
+			$data['nama_supir'] = $tampil->nama_supir;
 			$data['nik'] = $tampil->nik;
-			$data['email'] = $tampil->email;
+			$data['no_ktp'] = $tampil->no_ktp;
 			$data['no_hp'] = $tampil->no_hp;
 			$data['jenis_kelamin'] = $tampil->jenis_kelamin;
 			$data['alamat'] = $tampil->alamat;
-			$data['status'] = $tampil->status;
-			$data['created'] = $tampil->created;
-			$data['last_login'] = $tampil->last_login;
+			$data['tgl_lahir'] = $tampil->tgl_lahir;
+			$data['umur'] = $tampil->umur;
+			$data['foto'] = $tampil->foto;
 
 
 		}
 
-		$data['header_tambahsupir'] = "Update  User";
-
-		$this->template->admin('admin/form_updateuser', $data);
+		$data['header_updatesupir'] = "Update Supir";
+		$data['cek']=$this->app_admin->getSupir();
+		$this->template->admin('admin/form_updatesupir', $data);
 	}
-
+//hapus data supir
 		function hapus($id){
 
 
-		$where = array('id_user' => $id);
+	
+			$supir = $this->app_admin->get_where('tb_supir', array('id_supir' => $id_supir));
 
 
-		$this->app_admin->hapus_data($where,'tb_user');
-
-
-		$this->session->set_flashdata('success' ,'Data supir Berhasil di hapus');
-
-		redirect('user');
+			$where = array('id_supir' => $id);
+	
+			foreach ($supir->result() as $tampil ) {
+				# code...
+	
+			$data['gambar'] = $tampil->gambar;
+	
+	
+			}
+	
+			$this->app_admin->hapus_data($where,'tb_supir');
+	
+			unlink('./assets/upload/'.$gambar);
+	
+	
+			$this->session->set_flashdata('success' ,'Data Mobil Berhasil di hapus');
+	
+			redirect('supir');
 	}
 
 }

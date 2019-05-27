@@ -90,7 +90,7 @@
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-info" data-dismiss="modal">Cancel</button>
-				<a href="<?php echo base_url(); ?>mobil/hapus/<?php echo $id_mobil; ?>" class="btn btn-danger" >Delete</a>
+				<a href="<?php echo base_url(); ?>supir/hapus/<?php echo $id_supir; ?>" class="btn btn-danger" >Delete</a>
 			</div>
 		</div>
 	</div>
