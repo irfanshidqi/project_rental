@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 24 Mei 2019 pada 17.29
+-- Generation Time: 27 Mei 2019 pada 04.47
 -- Versi Server: 10.1.28-MariaDB
 -- PHP Version: 7.1.11
 
@@ -33,6 +33,7 @@ CREATE TABLE `tb_admin` (
   `username` varchar(255) NOT NULL,
   `nama_admin` varchar(100) NOT NULL,
   `email` varchar(255) NOT NULL,
+  `no_hp` varchar(12) NOT NULL,
   `level` int(2) NOT NULL,
   `password` varchar(255) NOT NULL,
   `reset` varchar(255) NOT NULL
@@ -42,11 +43,11 @@ CREATE TABLE `tb_admin` (
 -- Dumping data untuk tabel `tb_admin`
 --
 
-INSERT INTO `tb_admin` (`id_admin`, `username`, `nama_admin`, `email`, `level`, `password`, `reset`) VALUES
-(1, 'admin2', 'irfan', 'triplets.cv@gmail.com', 1, 'admin', ''),
-(2, 'admin', 'irfan shidqi laksono', 'guramin01@gmail.com', 2, '$2y$10$NFH9ImQAg8J2a99bPUQF6OmhkYBKQeHayILD60w9HJDuANyaQvQES', ''),
-(3, 'admin2', 'ini', 'halo@galo.com', 2, '$2y$10$dEo885oSE15jL0Rx0yqCF.yZCMhQXv9l8zFyXqcxvtjcbNfDDtjWS', ''),
-(4, 'admin2', 'ini', 'halo@galo.com', 2, '$2y$10$PPSyof2/n3Xi0o02toNrT.tWW1MTBO9CS9HaO3wveyMCB7zju5qE2', '');
+INSERT INTO `tb_admin` (`id_admin`, `username`, `nama_admin`, `email`, `no_hp`, `level`, `password`, `reset`) VALUES
+(1, 'admin2', 'irfan', 'triplets.cv@gmail.com', '0852747247', 1, 'admin', ''),
+(2, 'admin', 'irfan shidqi laksono', 'guramin01@gmail.com', '082731723', 2, '$2y$10$NFH9ImQAg8J2a99bPUQF6OmhkYBKQeHayILD60w9HJDuANyaQvQES', ''),
+(3, 'admin2', 'ini', 'halo@galo.com', '0812312424', 2, '$2y$10$dEo885oSE15jL0Rx0yqCF.yZCMhQXv9l8zFyXqcxvtjcbNfDDtjWS', ''),
+(4, 'admin2', 'ini', 'halo@galo.com', '027428428', 2, '$2y$10$PPSyof2/n3Xi0o02toNrT.tWW1MTBO9CS9HaO3wveyMCB7zju5qE2', '');
 
 -- --------------------------------------------------------
 
@@ -158,8 +159,8 @@ CREATE TABLE `tb_mobil` (
 INSERT INTO `tb_mobil` (`id_mobil`, `id_merek`, `nama_mobil`, `deskripsi_mobil`, `tahun_mobil`, `kapasitas_mobil`, `harga_sewa`, `warna_mobil`, `transmisi_mobil`, `plat_mobil`, `status_sewa`, `gambar`, `status_mobil`, `ditambahkan`, `fasilitas_mobil`, `last_update`) VALUES
 (32, 7, 'WARNER', 'MANTAP... BISA PESAN PSK', '2019', 11, '250000', 'PUTIHwwww', 1, 'P 1 RI', 1, 'gambar2019_05_20_05_18_26.png', 1, '2019-05-20 10:13:25', 1, '2019-05-20 10:20:14'),
 (33, 7, '    EVOQUE  ', 'BONUS DRUGS', '2018', 6, '10000000', '   PUTIH', 2, '   L 1 RI', 2, 'gambar2019_05_16_10_47_211.png', 1, '2019-05-16 15:47:21', 1, '0000-00-00 00:00:00'),
-(36, 10, ' LANCER EVO ', 'Mobil mantap jiwa hahahahahahahhaa', '2011', 4, '2000000', '  PUTIH', 1, '  H2015 2', 1, 'gambar2019_05_19_16_24_511.png', 1, '2019-05-19 21:24:51', 1, '0000-00-00 00:00:00'),
-(37, 8, ' Ducati EvoZ ', 'Mobil Ter GG yang pernah ada di dunia waw', '2021', 7, '12000000', '  Hitam', 1, '  H2015 22', 1, 'gambar2019_05_16_10_58_191.png', 1, '2019-05-16 15:58:19', 1, '0000-00-00 00:00:00');
+(36, 10, ' LANCER EVO ', 'Mobil mantap jiwa hahahahahahahhaa', '2011', 4, '2000000', '  PUTIH', 1, '  H2015 2', 2, 'gambar2019_05_19_16_24_511.png', 1, '2019-05-19 21:24:51', 1, '0000-00-00 00:00:00'),
+(37, 10, ' Ducati EvoZ ', 'Mobil Ter GG yang pernah ada di dunia waw', '2021', 7, '12000000', '  Hitam', 1, '  H2015 22', 2, 'gambar2019_05_16_10_58_191.png', 1, '2019-05-16 15:58:19', 1, '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -216,23 +217,39 @@ CREATE TABLE `tb_transaksi` (
   `denda` int(11) NOT NULL,
   `bukti_pembayaran` varchar(100) NOT NULL,
   `id_bank` int(5) NOT NULL,
-  `created` datetime NOT NULL
+  `created_inv` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data untuk tabel `tb_transaksi`
 --
 
-INSERT INTO `tb_transaksi` (`id_transaksi`, `id_mobil`, `id_merek`, `status_transaksi`, `nama`, `no_hp`, `email`, `tujuan`, `tgl_order`, `waktu_order`, `tgl_akhir`, `lama_peminjaman`, `harga`, `total_harga`, `denda`, `bukti_pembayaran`, `id_bank`, `created`) VALUES
-('TR19052200001', 33, 7, 0, 'Muhammad irfan Shidqi Laksono', '08133063065', 'valve@gmail.com', 'Magelang', '2019-05-18', '22:22:00', '0000-00-00', 0, 20000, 0, 0, '', 0, '2019-05-22 23:24:48'),
-('TR19052200002', 32, 7, 0, '', '', '', '', '0000-00-00', '00:00:00', '0000-00-00', 0, 20000, 0, 0, '', 0, '2019-05-22 23:25:27'),
-('TR19052300003', 33, 7, 1, 'Muhammad irfan Shidqi Laksono', '5235235235', 'guramin01@gmail.com', 'Alexandria', '2019-05-10', '22:22:00', '0000-00-00', 0, 10000000, 0, 0, '', 0, '2019-05-23 10:33:05'),
-('TR19052300004', 32, 7, 1, 'Muhammad irfan Shidqi Laksono', '5235235235', 'guramin07@gmail.com', 'Magelang', '2019-05-15', '05:55:00', '0000-00-00', 0, 250000, 0, 0, '', 0, '2019-05-23 10:47:41'),
-('TR19052400005', 32, 7, 1, 'Muhammad irfan Shidqi Laksono', '5235235235', 'admin@gmail.com', 'Alexandria', '2019-05-09', '04:04:00', '1970-01-05', 4, 250000, 0, 0, '', 0, '2019-05-24 10:29:34'),
-('TR19052400006', 33, 7, 1, 'Irfan Shdiqi', '08133063065', 'triplets.cv@gmail.com', 'Magelang', '2019-05-21', '05:05:00', '2019-05-25', 4, 10000000, 0, 0, '', 0, '2019-05-24 10:32:03'),
-('TR19052400007', 33, 7, 1, 'Muhammad irfan Shidqi Laksono', '08133063065', 'triplets.cv@gmail.com', 'Magelang', '2019-05-09', '20:00:00', '2019-05-13', 4, 10000000, 0, 0, '', 0, '2019-05-24 12:23:33'),
-('TR19052400008', 33, 7, 1, 'Irfan Shdiqi', '5235235235', 'guramin07@gmail.com', 'Magelang', '2019-05-10', '05:05:00', '2019-05-15', 5, 10000000, 0, 0, '', 0, '2019-05-24 20:29:59'),
-('TR19052400009', 32, 7, 1, 'Irfan Shdiqi', '08133063065', 'valve@gmail.com', 'Magelang', '2019-05-24', '05:05:00', '2019-05-29', 5, 10000000, 50000000, 0, '', 1, '2019-05-24 21:39:58');
+INSERT INTO `tb_transaksi` (`id_transaksi`, `id_mobil`, `id_merek`, `status_transaksi`, `nama`, `no_hp`, `email`, `tujuan`, `tgl_order`, `waktu_order`, `tgl_akhir`, `lama_peminjaman`, `harga`, `total_harga`, `denda`, `bukti_pembayaran`, `id_bank`, `created_inv`) VALUES
+('TR19052200001', 33, 7, 1, 'Muhammad irfan Shidqi Laksono', '08133063065', 'valve@gmail.com', 'Magelang', '2019-05-18', '22:22:00', '0000-00-00', 0, 20000, 0, 0, '', 1, '2019-05-22 23:24:48'),
+('TR19052200002', 32, 7, 1, '', '', '', '', '0000-00-00', '00:00:00', '0000-00-00', 0, 20000, 0, 0, '', 1, '2019-05-22 23:25:27'),
+('TR19052300003', 33, 7, 1, 'Muhammad irfan Shidqi Laksono', '5235235235', 'guramin01@gmail.com', 'Alexandria', '2019-05-10', '22:22:00', '0000-00-00', 0, 10000000, 0, 0, '', 1, '2019-05-23 10:33:05'),
+('TR19052300004', 32, 7, 1, 'Muhammad irfan Shidqi Laksono', '5235235235', 'guramin07@gmail.com', 'Magelang', '2019-05-15', '05:55:00', '0000-00-00', 0, 250000, 0, 0, '', 1, '2019-05-23 10:47:41'),
+('TR19052400005', 32, 7, 1, 'Muhammad irfan Shidqi Laksono', '5235235235', 'admin@gmail.com', 'Alexandria', '2019-05-09', '04:04:00', '1970-01-05', 4, 250000, 0, 0, '', 1, '2019-05-24 10:29:34'),
+('TR19052400006', 33, 7, 1, 'Irfan Shdiqi', '08133063065', 'triplets.cv@gmail.com', 'Magelang', '2019-05-21', '05:05:00', '2019-05-25', 4, 10000000, 0, 0, '', 1, '2019-05-24 10:32:03'),
+('TR19052400007', 33, 7, 1, 'Muhammad irfan Shidqi Laksono', '08133063065', 'triplets.cv@gmail.com', 'Magelang', '2019-05-09', '20:00:00', '2019-05-13', 4, 10000000, 0, 0, '', 1, '2019-05-24 12:23:33'),
+('TR19052400008', 33, 7, 1, 'Irfan Shdiqi', '5235235235', 'guramin07@gmail.com', 'Magelang', '2019-05-10', '05:05:00', '2019-05-15', 5, 10000000, 0, 0, '', 1, '2019-05-24 20:29:59'),
+('TR19052400009', 32, 7, 1, 'Irfan Shdiqi', '08133063065', 'valve@gmail.com', 'Magelang', '2019-05-24', '05:05:00', '2019-05-29', 5, 10000000, 50000000, 0, '', 1, '2019-05-24 21:39:58'),
+('TR19052400010', 33, 7, 1, 'Irfan Shdiqi', '5235235235', 'guramin07@gmail.com', 'Magelang', '2019-05-11', '05:55:00', '2019-05-16', 5, 10000000, 50000000, 0, '', 1, '2019-05-24 23:15:35'),
+('TR19052400011', 33, 7, 1, 'Irfan Shdiqi', '5235235235', 'guramin07@gmail.com', 'Magelang', '2019-05-11', '05:55:00', '2019-05-16', 5, 10000000, 50000000, 0, '', 1, '2019-05-24 23:15:51'),
+('TR19052400012', 33, 7, 1, 'Muhammad irfan Shidqi Laksono', '08133063065', 'guramin07@gmail.com', 'Alexandria', '2019-05-25', '04:44:00', '2019-05-29', 4, 10000000, 40000000, 0, '', 1, '2019-05-25 00:05:31'),
+('TR19052400013', 33, 7, 1, 'Muhammad irfan Shidqi Laksono', '08133063065', 'guramin07@gmail.com', 'Alexandria', '2019-05-25', '04:44:00', '2019-05-29', 4, 10000000, 40000000, 0, '', 1, '2019-05-25 00:06:18'),
+('TR19052400014', 32, 7, 1, 'Muhammad irfan Shidqi Laksono', '08133063065', 'guramin07@gmail.com', 'Alexandria', '2019-05-25', '04:44:00', '2019-05-27', 2, 250000, 500000, 0, '', 1, '2019-05-25 00:07:11'),
+('TR19052400015', 33, 7, 1, 'Muhammad irfan Shidqi Laksono', '08133063065', 'guramin07@gmail.com', 'Alexandria', '2019-05-25', '04:44:00', '2019-05-27', 2, 10000000, 20000000, 0, '', 1, '2019-05-25 00:08:31'),
+('TR19052400016', 33, 7, 1, 'Muhammad irfan Shidqi Laksono', '08133063065', 'guramin07@gmail.com', 'Magelang', '2019-05-15', '04:22:00', '2019-05-18', 3, 10000000, 30000000, 0, '', 1, '2019-05-25 00:12:31'),
+('TR19052600017', 33, 7, 9, 'Irfan Shdiqi', '08133063065', 'valve@gmail.com', 'Magelang', '2422-04-04', '23:24:00', '1970-01-03', 2, 10000000, 20000000, 0, '', 1, '2019-05-26 10:29:02'),
+('TR19052600018', 37, 10, 1, 'Muhammad irfan Shidqi Laksono', '08133063065', 'triplets.cv@gmail.com', 'Magelang', '2019-05-04', '22:22:00', '2019-05-06', 2, 12000000, 24000000, 0, '', 1, '2019-05-26 11:07:14'),
+('TR19052600019', 36, 10, 9, 'Muhammad irfan Shidqi Laksono', '08133063065', 'guramin07@gmail.com', 'Magelang', '2019-05-22', '22:02:00', '2019-05-25', 3, 2000000, 6000000, 0, '', 1, '2019-05-25 11:12:50'),
+('TR19052600020', 33, 7, 9, 'Muhammad irfan Shidqi Laksono', '08133063065', 'valve@gmail.com', 'Magelang', '2019-05-08', '22:02:00', '2019-05-11', 3, 10000000, 30000000, 0, '', 1, '2019-05-26 20:51:31'),
+('TR19052600021', 37, 10, 9, 'Irfan Shdiqi', '08133063065', 'guramin07@gmail.com', 'Magelang', '2019-05-02', '04:44:00', '2019-05-06', 4, 12000000, 48000000, 0, '', 1, '2019-05-26 21:11:16'),
+('TR19052600022', 37, 10, 9, 'Muhammad irfan Shidqi Laksono', '08133063065', 'valve@gmail.com', 'Magelang', '2019-05-31', '02:02:00', '2019-06-02', 2, 12000000, 24000000, 0, '', 1, '2019-05-26 21:33:21'),
+('TR19052600023', 36, 10, 9, 'Irfan Shdiqi', '08133063065', 'valve@gmail.com', 'Magelang', '2019-05-02', '22:02:00', '2019-05-04', 2, 2000000, 4000000, 0, '', 1, '2019-05-26 22:12:27'),
+('TR19052600024', 33, 7, 9, 'Irfan Shdiqi', '08133063065', 'valve@gmail.com', 'Magelang', '2019-05-28', '22:02:00', '2019-05-31', 3, 10000000, 30000000, 0, '', 1, '2019-05-26 22:45:54'),
+('TR19052700025', 37, 10, 1, 'Irfan Shdiqi', '08133063065', 'guramin07@gmail.com', 'Magelang', '2019-05-29', '22:02:00', '2019-05-31', 2, 12000000, 24000000, 0, '', 1, '2019-05-27 09:18:42');
 
 -- --------------------------------------------------------
 
@@ -311,7 +328,10 @@ ALTER TABLE `tb_supir`
 -- Indexes for table `tb_transaksi`
 --
 ALTER TABLE `tb_transaksi`
-  ADD PRIMARY KEY (`id_transaksi`);
+  ADD PRIMARY KEY (`id_transaksi`),
+  ADD KEY `id_mobil` (`id_mobil`),
+  ADD KEY `id_merek` (`id_merek`),
+  ADD KEY `id_bank` (`id_bank`);
 
 --
 -- Indexes for table `tb_user`
@@ -374,6 +394,14 @@ ALTER TABLE `tb_user`
 --
 ALTER TABLE `tb_mobil`
   ADD CONSTRAINT `tb_mobil_ibfk_1` FOREIGN KEY (`id_merek`) REFERENCES `tb_merek_mobil` (`id_merek`);
+
+--
+-- Ketidakleluasaan untuk tabel `tb_transaksi`
+--
+ALTER TABLE `tb_transaksi`
+  ADD CONSTRAINT `tb_transaksi_ibfk_1` FOREIGN KEY (`id_merek`) REFERENCES `tb_merek_mobil` (`id_merek`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `tb_transaksi_ibfk_2` FOREIGN KEY (`id_mobil`) REFERENCES `tb_mobil` (`id_mobil`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `tb_transaksi_ibfk_3` FOREIGN KEY (`id_bank`) REFERENCES `tb_bank` (`id_bank`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
