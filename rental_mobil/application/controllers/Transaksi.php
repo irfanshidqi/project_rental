@@ -171,6 +171,7 @@ date_default_timezone_set('Asia/Jakarta');
                 //update status mobil menjadi Tersedia
                 $this->db->where(['id_mobil' => $row->id_mobil]);
                 $this->db->update('tb_mobil', ['status_sewa' => 1]);
+                //akhir 
 
 
             echo "<div class='btn btn-danger pull-right'><i class='fa fa-credit-card'>Waktu Pembayaran Telah Habis</div>";
