@@ -132,14 +132,17 @@ if ($this->input->post('submit', TRUE) == 'Submit')
 			//insert
 
 			$datauser = array (
-				'username' => $this->input->post('username', TRUE),
-				'nama' => $this->input->post('nama', TRUE),
+				'id_supir' => $this->input->post('id_supir', TRUE),
+				'nama_supir' => $this->input->post('nama_supir', TRUE),
 				'nik' => $this->input->post('nik', TRUE),
-				'email' => $this->input->post('email', TRUE),
+				'no_ktp' => $this->input->post('no_ktp', TRUE),
 				'no_hp' => $this->input->post('no_hp', TRUE),
 				'jenis_kelamin' => $this->input->post('jenis_kelamin', TRUE),
 				'alamat' => $this->input->post('alamat', TRUE),
-				'status' => $this->input->post('status', TRUE)
+				'tgl_lahir' => $this->input->post('tanggal_lahir', TRUE),
+				'umur' => $this->input->post('umur', TRUE),
+				'foto' => $this->input->post('foto', TRUE)
+
 
 			);
 
@@ -148,7 +151,7 @@ if ($this->input->post('submit', TRUE) == 'Submit')
 				// echo $this->upload->display_errors('<p style="color:#fff">', '</p>');
 
 		  $this->db->set('last_update', 'NOW()', FALSE);
-		  $this->app_admin->update('tb_user', $datauser, array('id_user' => $id_user));
+		  $this->app_admin->update('tb_supir', $datauser, array('id_supir' => $id_supir));
 
 		  $this->session->set_flashdata('success', 'Data User Telah Berhasil di ubah');
 		  redirect(current_url());
