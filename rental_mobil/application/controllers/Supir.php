@@ -198,13 +198,14 @@ if ($this->input->post('submit', TRUE) == 'Submit')
 
 		  $this->db->set('last_update', 'NOW()', FALSE);
 		  $this->app_admin->update('tb_supir', $supir, array('id_supir' => $id_supir));
-		  $this->session->set_flashdata('success', 'Data Mobil Telah Berhasil di ubah');
+		  $this->session->set_flashdata('success', 'Data Sopir Telah Berhasil di ubah');
 		  redirect(current_url());
 
 		}
-
-		$supir = $this->app_admin->getIdSupir($id);
-		foreach ($supir as $tampil) {
+		
+		$supir = $this->app_admin->get_where('tb_supir', array('id_supir' => $id_supir));
+		foreach ($supir->result() as $tampil) 
+		{
 			$data['id_supir'] = $tampil->id_supir;
 			$data['nama_supir'] = $tampil->nama_supir;
 			$data['nik'] = $tampil->nik;
@@ -217,7 +218,7 @@ if ($this->input->post('submit', TRUE) == 'Submit')
 			$data['foto'] = $tampil->foto;
 		}
 
-		$data['header_updatesupir'] = "Update  Supir";
+		$data['header_updatesupir'] = "Update Supir";
 		$data['cek']= $this->app_admin->getAll();
 
 		$this->template->admin('admin/form_updatesupir', $data);
@@ -246,7 +247,7 @@ if ($this->input->post('submit', TRUE) == 'Submit')
 			unlink('./assets/upload/'.$gambar);
 	
 	
-			$this->session->set_flashdata('success' ,'Data Mobil Berhasil di hapus');
+			$this->session->set_flashdata('success' ,'Data Sopir Berhasil di hapus');
 	
 			redirect('supir');
 	}

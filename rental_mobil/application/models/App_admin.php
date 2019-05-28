@@ -64,11 +64,6 @@ class App_Admin extends CI_Model {
 		return $query->result();
 	}
 
-	function getIdSupir($id){
-		$query = $this->db->query("SELECT tb_supir.id_supir,tb_supir.nama_supir, tb_supir.nik, tb_supir.no_ktp, tb_supir.no_hp, tb_supir.jenis_kelamin, tb_supir.alamat, tb_supir.tgl_lahir, tb_supir.umur, tb_supir.foto FROM tb_supir WHERE tb_supir.id_supir = '$id'");
-		return $query->result();
-	}
-
 	function getAll(){
 		$this->db->select('*');
 		$this->db->from('tb_merek_mobil');
