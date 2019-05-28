@@ -205,7 +205,6 @@ if ($this->input->post('submit', TRUE) == 'Submit')
 		$supir = $this->app_admin->get_where('tb_supir', array('id_supir' => $id_supir));
 		foreach ($supir->result() as $tampil) 
 		{
-			$data['id_supir'] = $tampil->id_supir;
 			$data['nama_supir'] = $tampil->nama_supir;
 			$data['nik'] = $tampil->nik;
 			$data['no_ktp'] = $tampil->no_ktp;
