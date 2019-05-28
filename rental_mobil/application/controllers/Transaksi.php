@@ -55,6 +55,41 @@ class Transaksi extends CI_Controller {
 
         );
 
+
+                    $this->load->library('email');
+
+                    $config['charset'] = 'utf-8';
+                    $config['useragent'] = 'rentcar';
+                    $config['protocol'] = 'smtp';
+                    $config['mailtype'] = 'html';
+                    $config['smtp_host'] = 'ssl://smtp.gmail.com';
+                    $config['smtp_port'] ='465';
+                    $config['smtp_timeout'] = '5';
+                    $config['smtp_user'] = 'triplets.cv@gmail.com';//email gmail
+                    $config['smtp_pass'] = 'polijetriplets123';//isi passowrd email
+                    $config['crlf'] = "\r\n";
+                    $config['newline'] = "\r\n";
+                    $config['wordwrap'] = TRUE;
+
+                    $this->email->initialize($config);
+
+
+                    $this->email->from('triplets.cv@gmail.com', "rentcar");
+                    $this->email->to($this->input->post('email', TRUE));
+                    $this->email->subject('Penyewaan Mobil ');
+                    $this->email->message(
+
+                        'Terimakasih Telah Melakukan Pemesanan Penyewaan Mobil , mohon segera melakukan pembayaran sebelum waktu yg di tentukan sehingga pesanan anda dapat kami proses ke langkah selanjutnya'
+                    );
+                    if($this->email->send())
+                    {
+                        $this->session->set_flashdata('success', "Transaksi telah berhasil di lakukan , silahkan cek email anda untuk melihat detail");
+                    }else{
+                        $this->session->set_flashdata('alert', "Transaksi gagal Email gagal di kirim");
+                        redirect("transaksi/tambah_transaksi");
+
+                    }
+
         $this->db->where('id_mobil' , $this->input->post('tipe_mobil'));
         $this->db->update('tb_mobil',['status_sewa' => 2]);
 
@@ -63,7 +98,7 @@ class Transaksi extends CI_Controller {
          $this->app_admin->insert('tb_transaksi', $transaksi);
 
 
-         $this->session->set_flashdata('success', 'Transaksi Telah Berhasil di tambahkan');
+
          redirect("transaksi/invoice/".$id_trans);
 
      }else{
@@ -171,7 +206,6 @@ date_default_timezone_set('Asia/Jakarta');
                 //update status mobil menjadi Tersedia
                 $this->db->where(['id_mobil' => $row->id_mobil]);
                 $this->db->update('tb_mobil', ['status_sewa' => 1]);
-                //akhir 
 
 
             echo "<div class='btn btn-danger pull-right'><i class='fa fa-credit-card'>Waktu Pembayaran Telah Habis</div>";
