@@ -25,6 +25,18 @@
                   <div class="x_content">
 
                     <section class="content invoice">
+<?php  
+  if ($this->session->flashdata('alert'))
+   {
+      echo '<div class="alert alert-danger alert-message">';
+      echo $this->session->flashdata('alert');
+      echo '</div>';  # code...
+  } else if ($this->session->flashdata('success')) {
+      echo '<div class="alert alert-success alert-message">';
+      echo $this->session->flashdata('success');
+      echo '</div>';
+  }
+ ?>
                       <!-- title row -->
                       <div class="row">
                         <div class="col-xs-12 invoice-header">
