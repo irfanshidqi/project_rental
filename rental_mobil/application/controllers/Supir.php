@@ -148,8 +148,7 @@ if ($this->input->post('submit', TRUE) == 'Submit')
 				'jenis_kelamin' => $this->input->post('jenis_kelamin', TRUE),
 				'alamat' => $this->input->post('alamat', TRUE),
 				'tgl_lahir' => $this->input->post('tgl_lahir', TRUE),
-				'umur' => $this->input->post('umur', TRUE),
-				'foto' => $this->input->post('foto', TRUE),				
+				'umur' => $this->input->post('umur', TRUE)
 			);
 
 // //cek gambar apakah kosong ?

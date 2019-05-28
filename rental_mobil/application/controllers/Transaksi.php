@@ -15,10 +15,10 @@ class Transaksi extends CI_Controller {
 
     public function index()
     {
-    	$data['merek'] = $this->app_admin->getAll();
 
-    	$data['data'] = $this->app_admin->getMobil();
-    	$this->template->admin('admin/form_transaksi', $data);
+
+    	$data['data'] = $this->app_admin->get_allinvoice();
+    	$this->template->admin('admin/isi_datatransaksi', $data);
     }
     public function tambah_transaksi()
     {
@@ -49,6 +49,7 @@ class Transaksi extends CI_Controller {
             'waktu_order' => $this->input->post('waktu', TRUE),
             'tgl_akhir' => $akhir_penyewaan,
             'id_bank' => $this->input->post('bank', TRUE),
+            'id_admin'=> $this->session->userdata('admin'),
             'lama_peminjaman' => $this->input->post('lama_penyewaan', TRUE)
 
 

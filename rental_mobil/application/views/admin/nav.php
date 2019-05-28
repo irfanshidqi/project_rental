@@ -28,17 +28,17 @@
                   <li><a><i class="fa fa-user"></i> User <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="<?php echo base_url().'user' ?>">Data User</a></li>
-                      <li><a href="#">Hak Akses</a></li>
-                      <li><a href="#">List User</a></li>
+<!--                       <li><a href="#">Hak Akses</a></li>
+                      <li><a href="#">List User</a></li> -->
 
                     </ul>
                   </li>
                   <li><a><i class="fa fa-shopping-cart"></i> Pesanan Mobil <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="<?php echo base_url().'transaksi/tambah_transaksi' ?>">Tambah Transaksi</a></li>
-                      <li><a href="#">Proses Peminjaman</a></li>
-                      <li><a href="#">Transaksi Selesei</a></li>
-
+                      <li><a href="<?php echo base_url().'transaksi' ?>">Data transaksi</a></li>
+<!--                       <li><a href="#">Transaksi Selesei</a></li>
+ -->
                     </ul>
                   </li>
                   <li><a><i class="fa fa-book"></i> Laporan <span class="fa fa-chevron-down"></span></a>

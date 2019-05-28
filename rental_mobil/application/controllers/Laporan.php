@@ -12,8 +12,8 @@ class Laporan extends CI_Controller {
 
     public function index()
     {
-
-    	$this->template->admin('admin/isi_datalaporan');
+    	$data['data'] = $this->app_admin->get_finish();
+    	$this->template->admin('admin/isi_datalaporan',$data);
     }
 
 

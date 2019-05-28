@@ -19,6 +19,7 @@
 
 <?php  echo $content; ?>
         </div>
+        
         <!-- /page content -->
 
         <!-- footer content -->
