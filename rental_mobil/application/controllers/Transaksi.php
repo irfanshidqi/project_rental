@@ -165,8 +165,13 @@ date_default_timezone_set('Asia/Jakarta');
 
             if($diff->h > 0)
             {
+                //update status transaksi jadi batal
                 $this->db->where(['id_transaksi' => $row->id_transaksi]);
                 $this->db->update('tb_transaksi',['status_transaksi' => 9]);
+                //update status mobil menjadi Tersedia
+                $this->db->where(['id_mobil' => $row->id_mobil]);
+                $this->db->update('tb_mobil', ['status_sewa' => 1]);
+                //akhir 
 
 
             echo "<div class='btn btn-danger pull-right'><i class='fa fa-credit-card'>Waktu Pembayaran Telah Habis</div>";
@@ -176,6 +181,7 @@ date_default_timezone_set('Asia/Jakarta');
             echo 60-$diff->i . ' Menit ';
             echo 60-$diff->s . ' Detik ';
             echo "<br><div class='btn btn-success pull-right'><i class='fa fa-credit-card'></i> Upload Bukti Pembayaran</div>"; 
+
 
         }
 
