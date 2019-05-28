@@ -141,7 +141,6 @@ if ($this->input->post('submit', TRUE) == 'Submit')
 			//insert
 
 			$supir = array (
-				'id_supir' => $this->input->post('id_supir', TRUE),
 				'nama_supir' => $this->input->post('nama_supir', TRUE),
 				'nik' => $this->input->post('nik', TRUE),
 				'no_ktp' => $this->input->post('no_ktp', TRUE),
