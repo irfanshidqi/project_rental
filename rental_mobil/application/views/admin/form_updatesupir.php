@@ -100,17 +100,17 @@ if($this->session->flashdata('error'))
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
                           <label for="message">Deskripsi (20 chars min, 100 max) :</label>
-                          <textarea id="alamat" required="required" class="form-control" name="alamat" data-parsley-trigger="keyup" data-parsley-minlength="20" data-parsley-maxlength="100" data-parsley-minlength-message="Come on! You need to enter at least a 20 caracters long comment.."
+                          <textarea id="alamat" required="required" class="form-control" name="alamat" data-parsley-trigger="keyup" data-parsley-minlength="10" data-parsley-maxlength="100" data-parsley-minlength-message="Come on! You need to enter at least a 20 caracters long comment.."
                             data-parsley-validation-threshold="10"  ><?php echo $alamat; ?></textarea>
                           </div>
                       </div>
 
 
-                      <!--<div class="form-group">
+                     <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Tanggal Lahir <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="text" id="tgl_lahir" name="tgl_lahir" value="<?php //echo $tgl_lahir; ?>" required="required" class="form-control col-md-7 col-xs-12">
+                          <input type="date" id="tgl_lahir" name="tgl_lahir" value="" required="required" class="form-control col-md-7 col-xs-12">
                         </div>
                       </div>
 
@@ -118,17 +118,17 @@ if($this->session->flashdata('error'))
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Umur <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="text" id="umur" name="umur" value="<?php //echo $umur; ?>" required="required" class="form-control col-md-7 col-xs-12">
+                        	<input type="number" onkeydown="return event.keyCode !== 69" id="umur" name="umur" value="<?php echo $umur; ?>" required="required"  step="1"  class="form-control col-md-7 col-xs-12"/>
                         </div>
-                      </div>-->
+                      </div>
 
                       <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Foto Sopir <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <?php if (isset($fto)){
-                            echo '<input type="hidden" name="foto" value="'.$fto.'">';
-                            echo '<img src="'.base_url().'assets/upload/'.$fto.'" width="30%">';
+                          <?php if (isset($foto)){
+                            echo '<input type="hidden" name="gambar_lama" value="'.$foto.'">';
+                            echo '<img src="'.base_url().'assets/upload/'.$foto.'" width="30%">';
                           } ?>
                           <div class="clearfix"></div>
                           <br>

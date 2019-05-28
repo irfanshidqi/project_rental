@@ -15,7 +15,7 @@
 					<div class="row">
 						
 						<div class="col-md-5 col-sm-6">
-							<img src=" <?php echo base_url(); ?>assets/upload/<?php echo $foto; ?> " style="width: 100%" alt="mobil">
+							<img src=" <?php echo base_url(); ?>assets/upload/<?php echo $foto; ?> " style="width: 100%" alt="supir">
 
 						</div>					
 	

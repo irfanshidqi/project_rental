@@ -148,7 +148,7 @@ if ($this->input->post('submit', TRUE) == 'Submit')
 				'no_hp' => $this->input->post('no_hp', TRUE),
 				'jenis_kelamin' => $this->input->post('jenis_kelamin', TRUE),
 				'alamat' => $this->input->post('alamat', TRUE),
-				'tgl_lahir' => $this->input->post('tanggal_lahir', TRUE),
+				'tgl_lahir' => $this->input->post('tgl_lahir', TRUE),
 				'umur' => $this->input->post('umur', TRUE),
 				'foto' => $this->input->post('foto', TRUE),				
 			);
@@ -172,7 +172,7 @@ if ($this->input->post('submit', TRUE) == 'Submit')
 				if ($this->upload->do_upload('foto')) 
 				{
 
-					$gbr = $this->upload->data(); 
+					$foto = $this->upload->data(); 
 
 
 					// $this->load->helper("file");
@@ -181,7 +181,7 @@ if ($this->input->post('submit', TRUE) == 'Submit')
 					// $path = './assets/upload'.$this->input->post('gambar_lama', TRUE);
 					// unlink($path);
 					unlink('./assets/upload/'.$this->input->post('gambar_lama', TRUE));
-					$supir['foto'] = $fto['file_name'];
+					$supir['foto'] = $foto['file_name'];
 
 
 
@@ -198,7 +198,6 @@ if ($this->input->post('submit', TRUE) == 'Submit')
 
 		  $this->db->set('last_update', 'NOW()', FALSE);
 		  $this->app_admin->update('tb_supir', $supir, array('id_supir' => $id_supir));
-
 		  $this->session->set_flashdata('success', 'Data Mobil Telah Berhasil di ubah');
 		  redirect(current_url());
 
@@ -219,9 +218,10 @@ if ($this->input->post('submit', TRUE) == 'Submit')
 		}
 
 		$data['header_updatesupir'] = "Update  Supir";
-		$data['cek']= $this->app_admin->getSupir();
+		$data['cek']= $this->app_admin->getAll();
 
 		$this->template->admin('admin/form_updatesupir', $data);
+
 	}
 //hapus data supir
 		function hapus($id){
