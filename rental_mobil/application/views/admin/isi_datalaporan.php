@@ -52,19 +52,10 @@
                           <td>                          
                             <?php 
 
-                      if($trans->status_transaksi == 1){
-                          echo '<label class="label-default" style="color:white; padding:3px 5px;">Menunggu Pembayaran </label>';
-                        }elseif ($trans->status_transaksi == 2) {
-                          echo '<label class="label-default" style="color:white; padding:3px 5px;">Menunggu Konfirmasi </label>';
-                        }elseif ($trans->status_transaksi == 3) {
-                          echo '<label class="label-success" style="color:white; padding:3px 5px;">lunas </label>';
-                        }elseif ($trans->status_transaksi == 4) {
-                          echo '<label class="label-default" style="color:white; padding:3px 5px;">Proses Peminjaman </label>';
-                        }elseif ($trans->status_transaksi == 5) {
+                      if($trans->status_transaksi == 5){
+                        
                           echo '<label class="label-success" style="color:white; padding:3px 5px;">Transaksi selesai </label>';
-                        }elseif ($trans->status_transaksi == 9) {
-                          echo '<label class="label-danger" style="color:white; padding:3px 5px;">Transaksi Batal </label>';
-                            }
+                        }
                             ?>
                               
                             </td>
