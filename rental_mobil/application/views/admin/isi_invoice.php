@@ -249,11 +249,12 @@
 
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-            <h4 class="modal-title" id="myModalLabel">Upload Bukti Pembayaran</h4>
+            <h4 class="modal-title" id="myModalLabel">Upload Bukti Pembayaran <?php echo  $id = $this->uri->segment(3);           
+ ?></h4>
           </div>
           <div class="modal-body">
             <div id="testmodal" style="padding: 5px 20px;">
-              <form id="antoform" class="form-horizontal calender" role="form">
+              <form id="antoform" method="post" action="<?php echo base_url().'invoice/upload_bukti/'.$id;?>" class="form-horizontal calender" enctype='multipart/form-data'>
                 <div class="form-group">
                   <label class="col-sm-3 control-label">Title</label>
                   <div class="col-sm-9">
@@ -262,14 +263,15 @@
                     <img  id="Preview" style="width: 70%">
                   </div>
                 </div>
-
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default antoclose" data-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-success"name="submit" value="Submit" >Submit</button>
+            <button type="submit" class="btn btn-primary" name="submit" value="Submit">Submit</button>
+          </div>
               </form>
             </div>
           </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-default antoclose" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary antosubmit">Save changes</button>
-          </div>
+
         </div>
       </div>
     </div>
