@@ -39,5 +39,9 @@ class Invoice extends CI_Controller {
     	$this->template->admin('admin/isi_invoice', $data);
     }
 
+    public function upload_bukti(){
+        
+    }
+
 //akhir controller
 }

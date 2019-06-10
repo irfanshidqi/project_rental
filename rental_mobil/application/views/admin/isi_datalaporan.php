@@ -41,6 +41,7 @@
                     <?php 
 
                     $no = 1;
+                    if(!empty($data)){
                     foreach ($data as $trans) : ?>
 
                         <tr>
@@ -70,7 +71,7 @@
                         </tr>
 
                     <?php endforeach; ?>
-
+<?php } ?>
 
                       </tbody>
                     </table>

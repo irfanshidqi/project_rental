@@ -18,7 +18,26 @@ class Transaksi extends CI_Controller {
 
 
     	$data['data'] = $this->app_admin->get_allinvoice();
+        $data['header_trans'] = " Data Semua Transaksi ";
+        $data['penjelasan'] = "Di bawah Ini Merupakan Semua data Transaksi yg ada";
+
     	$this->template->admin('admin/isi_datatransaksi', $data);
+    }
+    public function tr_pending()
+    {
+        $data['data'] = $this->app_admin->get_pending();
+        $data['header_trans'] = "Data Transaksi Pending ";
+        $data['penjelasan'] = "Di bawah Ini Merupakan Data Transaksi Pesanan user yang Belum Mengupload Bukti Pemayaran";
+
+        $this->template->admin('admin/isi_datatransaksi', $data);
+
+    }
+    public function tr_wait(){
+        $data['data'] = $this->app_admin->get_wait();
+        $data['header_trans'] = "Data Transaksi Pending ";
+        $data['penjelasan'] = "Di bawah Ini Merupakan Data Transaksi Pesanan user yang Belum Mengupload Bukti Pemayaran";
+
+        $this->template->admin('admin/isi_datatransaksi', $data);
     }
     public function tambah_transaksi()
     {
@@ -215,7 +234,9 @@ date_default_timezone_set('Asia/Jakarta');
 
             echo 60-$diff->i . ' Menit ';
             echo 60-$diff->s . ' Detik ';
-            echo "<br><div class='btn btn-success pull-right'><i class='fa fa-credit-card'></i> Upload Bukti Pembayaran</div>"; 
+            echo '<br><a href="#ModalUploadBukti" class="btn btn-success pull-right" data-toggle="modal"><i class="fa fa-credit-card"></i> Upload Bukti Pembayaran</a>'; 
+
+
 
 
         }

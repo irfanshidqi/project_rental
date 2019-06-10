@@ -241,6 +241,25 @@ setInterval(timer, 1000 );
 
 </script>
 
+<script type="text/javascript">
+  
+  function readURL(input) {
+  if (input.files && input.files[0]) {
+    var reader = new FileReader();
+    
+    reader.onload = function(e) {
+      $('#Preview').attr('src', e.target.result);
+    }
+    
+    reader.readAsDataURL(input.files[0]);
+  }
+}
+
+$("#imgInp").change(function() {
+  readURL(this);
+});
+</script>
+
 <!-- $(document).on('click', '.conf', function(){
 
     $('#jqContent').load(bu+'public/invoice/conf_invoice/<?php echo $ivd->code_inv;?>');

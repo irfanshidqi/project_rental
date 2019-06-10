@@ -241,3 +241,40 @@
           </div>
         </div>
         <!-- /page content -->
+
+    <!-- Upload modal -->
+    <div id="ModalUploadBukti" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h4 class="modal-title" id="myModalLabel">Upload Bukti Pembayaran</h4>
+          </div>
+          <div class="modal-body">
+            <div id="testmodal" style="padding: 5px 20px;">
+              <form id="antoform" class="form-horizontal calender" role="form">
+                <div class="form-group">
+                  <label class="col-sm-3 control-label">Title</label>
+                  <div class="col-sm-9">
+                    <input type="file" class="form-control" id="imgInp" name="bukti">
+                    <br>
+                    <img  id="Preview" style="width: 70%">
+                  </div>
+                </div>
+
+              </form>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default antoclose" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary antosubmit">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div id="fc_create" data-toggle="modal" data-target="#ModalUploadBukti"></div>
+    <!-- /Upload modal -->
+        
