@@ -102,7 +102,7 @@ class Admin extends CI_Controller {
 		$this->template->admin('admin/isi_editadmin', $data);
 	}
 
-	function cek_login()
+	public function cek_login()
 	{
 		if(!$this->session->userdata('admin'))
 		{

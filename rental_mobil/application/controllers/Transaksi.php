@@ -11,6 +11,7 @@ class Transaksi extends CI_Controller {
 		$this->load->model('app_admin');
 // HELPER
         $this->load->helper('exDate_helper');
+
 	}
 
     public function index()
@@ -34,13 +35,29 @@ class Transaksi extends CI_Controller {
     }
     public function tr_wait(){
         $data['data'] = $this->app_admin->get_wait();
-        $data['header_trans'] = "Data Transaksi Pending ";
-        $data['penjelasan'] = "Di bawah Ini Merupakan Data Transaksi Pesanan user yang Belum Mengupload Bukti Pemayaran";
+        $data['header_trans'] = "Data Transaksi yg menunggu Konfirmasi ";
+        $data['penjelasan'] = "Di bawah Ini Merupakan Data Transaksi Yang sudah melakukan upload pembayaran";
+
+        $this->template->admin('admin/isi_datatransaksi', $data);
+    }
+    public function tr_lunas(){
+        $data['data'] = $this->app_admin->get_lunas();
+        $data['header_trans'] = "Data Transaksi Lunas ";
+        $data['penjelasan'] = "Di bawah Ini Merupakan Data Transaksi Yang telah terkonfirmasi Lunas";
+
+        $this->template->admin('admin/isi_datatransaksi', $data);
+    }
+    public function tr_berlangsung(){
+        $data['data'] = $this->app_admin->get_berlangsung();
+        $data['header_trans'] = "Data Transaksi Berlangsung ";
+        $data['penjelasan'] = "Di bawah Ini Merupakan Data Transaksi Yang telah terkonfirmasi Peminjaman telah di berikan";
 
         $this->template->admin('admin/isi_datatransaksi', $data);
     }
     public function tambah_transaksi()
     {
+        $this->app_admin->cek_login();
+
         if ($this->input->post('submit', TRUE) == 'Submit') 
         {
 
@@ -153,7 +170,7 @@ class Transaksi extends CI_Controller {
             echo json_encode($data);
     }
 //get data invoice
-    public function invoice($id_trans)
+    public function invoice($id_trans = 0)
     {
 
          $invoice = $this->app_admin->getinvoice($id_trans);
@@ -170,6 +187,7 @@ class Transaksi extends CI_Controller {
             $data['warna'] = $inv->warna_mobil;
             $data['deskripsi'] = $inv->deskripsi_mobil;
             $data['merek_mobil'] = $inv->nama_merek;
+            $data['foto_bukti'] = $inv->bukti_pembayaran;
             $data['nama'] = $inv->nama;
             $data['no_hp'] = $inv->no_hp;
             $data['email'] = $inv->email;

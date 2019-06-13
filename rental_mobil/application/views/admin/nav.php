@@ -39,7 +39,8 @@
                       <li><a href="<?php echo base_url().'transaksi' ?>">Data Semua Transaksi</a></li>
                       <li><a href="<?php echo base_url().'transaksi/tr_pending' ?>">Transaksi Pending</a></li>
                       <li><a href="<?php echo base_url().'transaksi/tr_wait' ?>">Menunggu Konfirmasi</a></li>
-                      <li><a href="<?php echo base_url().'transaksi' ?>">Dalam Peminjaman</a></li>
+                      <li><a href="<?php echo base_url().'transaksi/tr_lunas' ?>">Pembayaran Lunas</a></li>
+                      <li><a href="<?php echo base_url().'transaksi/tr_berlangsung' ?>">Peminjaman Berlangsung</a></li>
 
 
 

@@ -50,7 +50,7 @@
                         }elseif ($status_transaksi == 2) {
                         	echo "<small ><i class='fa fa-credit-card'></i> Menunggu Konfirmasi</small>";
                         }elseif ($status_transaksi == 3) {
-                        	echo "<small ><i class='fa fa-credit-card'></i> Lunas</small>";
+                        	echo "<small ><i class='fa fa-credit-card'></i> Pembayaran Lunas</small>";
                         }elseif ($status_transaksi == 4) {
                         	echo "<small ><i class='fa fa-credit-card'></i> Peminjaman sedang Berjalan</small>";
                         }elseif ($status_transaksi == 5) {
@@ -218,6 +218,18 @@
     </div>
     <?php else:?>
     <?php endif;?>
+<?php if($status_transaksi == 2){
+
+  echo '<a href="#ModalFotoBukti" class="btn btn-success pull-right" data-toggle="modal"><i class="fa fa-credit-card"></i> Lihat Foto Bukti Pembayaran</a>';
+
+}elseif ($status_transaksi == 3) {
+  echo '<a href="#ModalFotoBukti" class="btn btn-success pull-right" data-toggle="modal"><i class="fa fa-credit-card"></i> Lihat Foto Bukti Pembayaran</a>';
+}elseif ($status_transaksi == 4) {
+  echo '<a href="#ModalFotoBukti" class="btn btn-success pull-right" data-toggle="modal"><i class="fa fa-credit-card"></i> Lihat Foto Bukti Pembayaran</a>';
+}elseif ($status_transaksi == 5) {
+  echo '<a href="#ModalFotoBukti" class="btn btn-success pull-right" data-toggle="modal"><i class="fa fa-credit-card"></i> Lihat Foto Bukti Pembayaran</a>';
+} ?>
+
    </div>
                           </div>
                         </div>
@@ -254,7 +266,7 @@
           </div>
           <div class="modal-body">
             <div id="testmodal" style="padding: 5px 20px;">
-              <form id="antoform" method="post" action="<?php echo base_url().'invoice/upload_bukti/'.$id;?>" class="form-horizontal calender" enctype='multipart/form-data'>
+              <form id="antoform" method="post" action="<?php echo base_url().'C_invoice/upload_bukti/'.$id;?>" class="form-horizontal calender" enctype='multipart/form-data'>
                 <div class="form-group">
                   <label class="col-sm-3 control-label">Title</label>
                   <div class="col-sm-9">
@@ -265,7 +277,6 @@
                 </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-default antoclose" data-dismiss="modal">Close</button>
-            <button type="submit" class="btn btn-success"name="submit" value="Submit" >Submit</button>
             <button type="submit" class="btn btn-primary" name="submit" value="Submit">Submit</button>
           </div>
               </form>
@@ -280,3 +291,73 @@
     <div id="fc_create" data-toggle="modal" data-target="#ModalUploadBukti"></div>
     <!-- /Upload modal -->
         
+    <!-- Foto modal -->
+    <div id="ModalFotoBukti" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h4 class="modal-title" id="myModalLabel">Foto Bukti Pembayaran <?php echo  $id = $this->uri->segment(3);           
+ ?></h4>
+          </div>
+          <div class="modal-body">
+            <div id="testmodal" style="padding: 5px 20px;">
+              <form id="antoform" method="post" action="<?php echo base_url().'C_invoice/konfirmasi_lunas/'.$id;?>" class="form-horizontal calender" enctype='multipart/form-data'>
+                <div class="form-group">
+                  <label class="col-sm-3 control-label"></label>
+                  <!-- pembatalan -->
+<?php if($status_transaksi == 2){ ?>
+
+<a href="<?php echo base_url()."C_invoice/pembatalan/".$id;?>" class="btn btn-danger pull-right" data-toggle="modal"><i class="fa fa-credit-card"></i> Batalkan Transaksi</a>
+
+<?php }?>
+
+<!-- akhir pembatalan -->
+<!-- konfirmasi peminjaman -->
+
+
+                  <div class="col-sm-9">
+
+                    <img src="<?php echo base_url(); ?>assets/bukti_pembayaran/<?php echo $foto_bukti; ?> "  id="Preview" style="width: 70%">
+                  </div>
+                </div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default antoclose" data-dismiss="modal">Close</button>
+            
+<?php if($status_transaksi == 2){
+
+  echo '<button type="submit" class="btn btn-success"name="submit" value="Submit" >Verifikasi</button>';
+
+}
+?>
+<?php if($status_transaksi == 3){ ?>
+
+<a href="<?php echo base_url()."C_invoice/konfirmasi_peminjaman/".$id;?>" class="btn btn-success pull-right" data-toggle="modal"><i class="fa fa-credit-card"></i> Konfirmasi Peminjaman Mobil</a>
+
+<?php }?>
+<?php if($status_transaksi == 4){ ?>
+
+<a href="<?php echo base_url()."C_invoice/peminjaman_selesai/".$id;?>" class="btn btn-success pull-right" data-toggle="modal"><i class="fa fa-credit-card"></i> Konfirmasi Peminjaman Mobil</a>
+
+<?php }?>
+
+          </div>
+
+
+              </form> 
+<!-- <form action="<?php echo base_url().'invoice/pembatalan/'.$id;?>" method="post">
+              <button type="submit" class="btn btn-danger"name="submit" value="Submit" >Batalkan Transaksi</button>
+
+</form> -->
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+
+    <div id="fc_create" data-toggle="modal" data-target="#ModalFotoBukti"></div>
+    <!-- /foto modal -->

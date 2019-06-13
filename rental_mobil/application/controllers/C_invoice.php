@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Invoice extends CI_Controller {
+class C_invoice extends CI_Controller {
 
 	function __construct()
 	{
@@ -13,30 +13,7 @@ class Invoice extends CI_Controller {
     public function index($id_trans)
     {
 
-    	 $invoice = $this->app_admin->getinvoice($id_trans);
 
-         foreach($invoice as $inv){
-            $data['id_transaksi'] = $inv->id_transaksi;
-            $data['nama_mobil'] = $inv->nama_mobil;
-            $data['merek_mobil'] = $inv->nama_merek;
-            $data['nama'] = $inv->nama;
-            $data['no_hp'] = $inv->no_hp;
-            $data['email'] = $inv->email;
-            $data['tujuan'] = $inv->tujuan;
-            $data['tgl_order'] = $inv->tgl_order;
-            $data['waktu_order'] = $inv->waktu_order;
-            $data['tgl_akhir'] = $inv->tgl_akhir;
-            $data['lama_peminjaman'] = $inv->lama_peminjaman;
-            $data['harga_sewa'] = $inv->harga;
-            $data['total_harga'] = $inv->total_harga;
-            $data['created'] = $inv->created;
-
-
-
-         }
-
-    	// $data['data'] = $this->app_admin->getMobil();
-    	$this->template->admin('admin/isi_invoice', $data);
     }
 
     public function upload_bukti()
@@ -83,15 +60,95 @@ class Invoice extends CI_Controller {
             } else {
 
                 $this->session->set_flashdata('alert', 'Cek Kembali Foto Anda !');
+                redirect("transaksi/invoice/".$id);
+
                 // echo $this->upload->display_errors('<p style="color:#fff">', '</p>');
             }
 
 
         }else{
-              $this->session->set_flashdata('alert', 'Upload BUkti gagal !');
+              $this->session->set_flashdata('alert', 'Upload Bukti gagal !');
+                redirect("transaksi/invoice/".$id);
+
      
         }
     }
+
+    public function konfirmasi_lunas(){
+        if($this->input->post('submit', TRUE) == 'Submit'){
+
+
+            $id = $this->uri->segment(3);
+            $this->db->where('id_transaksi', $id);
+            $this->db->update('tb_transaksi', ['status_transaksi' => 3]);
+
+            $this->session->set_flashdata('success', 'Konfirmasi Telah Berhasil');
+        redirect("transaksi/invoice/".$id);
+
+
+        }else{
+            $this->session->set_flashdata('alert', 'Konfirmasi Gagal');
+                redirect("transaksi/invoice/".$id);
+
+        }
+
+
+
+    }
+    public function konfirmasi_peminjaman(){
+
+
+
+            $id = $this->uri->segment(3);
+            $this->db->where('id_transaksi', $id);
+            $this->db->update('tb_transaksi', ['status_transaksi' => 4]);
+
+            $this->session->set_flashdata('success', 'Konfirmasi Telah Berhasil');
+        redirect("transaksi/invoice/".$id);
+
+
+
+
+
+    }
+    public function pembatalan(){
+
+
+            $id = $this->uri->segment(3);
+            $this->db->where('id_transaksi', $id);
+            $this->db->update('tb_transaksi', ['status_transaksi' => 9]);
+
+            $this->session->set_flashdata('success', 'Pembatalan Telah Berhasil');
+        redirect("transaksi/invoice/".$id);
+
+
+
+
+        
+
+
+
+    }
+    public function peminjaman_selesai(){
+
+
+            $id = $this->uri->segment(3);
+            $this->db->where('id_transaksi', $id);
+            $this->db->update('tb_transaksi', ['status_transaksi' => 5]);
+
+            $this->session->set_flashdata('success', 'Peminjaman Selesai Telah Berhasil');
+        redirect("transaksi/invoice/".$id);
+
+
+
+
+        
+
+
+
+    }
+
+
 
 //akhir controller
 }

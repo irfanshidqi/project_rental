@@ -37,11 +37,11 @@
                       <thead>
                         <tr>
                           <th>No.</th>
-                          <th>Username</th>
+                          <th>Kode Transaksi</th>
+                          <th>Tipe Mobil</th>
                           <th>Nama Lengkap</th>
-                          <th>NIK</th>
                           <th>No Telp</th>
-                          <th>Jenis Kelamin</th>
+                          <th>Status Transaksi</th>
                           <th>Action</th>
 
                         </tr>
@@ -70,7 +70,7 @@
                         }elseif ($trans->status_transaksi == 3) {
                           echo '<label class="label-success" style="color:white; padding:3px 5px;">lunas </label>';
                         }elseif ($trans->status_transaksi == 4) {
-                          echo '<label class="label-default" style="color:white; padding:3px 5px;">Proses Peminjaman </label>';
+                          echo '<label class="label-primary" style="color:white; padding:3px 5px;">Dalam Proses Peminjaman </label>';
                         }elseif ($trans->status_transaksi == 5) {
                           echo '<label class="label-success" style="color:white; padding:3px 5px;">Transaksi selesai </label>';
                         }elseif ($trans->status_transaksi == 9) {
@@ -82,9 +82,9 @@
 
                           <td>
                           	<a href="<?php echo base_url(); ?>transaksi/invoice/<?php echo $trans->id_transaksi; ?>" class="btn btn-success"><i class="fa fa-search-plus"></i></a>
-                          <?php 
+<!--                           <?php 
 
-                            if($trans->status_transaksi == 2){
+                            if($trans->status_transaksi == 3){
                               $link = "invoice/$trans->id_transaksi ";//linkk
                               echo "<a href='$link' " ;
                               echo 'class="btn btn-danger">';
@@ -92,7 +92,7 @@
                               echo "</a>";
                             }
 
-                           ?>
+                           ?> -->
 <!--                             <a href="<?php echo base_url(); ?>transaksi/update_trans/<?php echo $trans->id_supir; ?>" class="btn btn-warning"><i class="fa fa-edit"></i></a> -->
                           </td>
 
