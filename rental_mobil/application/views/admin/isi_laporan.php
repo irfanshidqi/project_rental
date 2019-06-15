@@ -98,6 +98,10 @@
                           <b>Payment Due:</b> <?php echo $tgl_akhir; ?>
                           <br>
                           <b>Account:</b> <?php echo $bank; ?>
+                          <br>
+                          <b>Denda:</b> Rp.<?php echo number_format($total); ?>
+                          <br>
+                          <b>Terlambat:</b> <?php echo $selisih; ?> hari
                         </div>
                         <!-- /.col -->
                       </div>
@@ -198,14 +202,32 @@
 
                                 </tr>
                                 <tr>
-                                  <th>Tenggat Waktu :</th>
-                                  <td><?php echo $selisih ?> Hari Lagi </td>
+                                  <th>Tgl Kembali :</th>
+                                  <td><?php echo $tgl_kembali ?></td>
+                                  <td></td>
+
+                                </tr>
+                                <tr>
+                                  <th>Terlambat :</th>
+                                  <td><?php echo $selisih ?> Hari </td>
+                                  <td></td>
+
+                                </tr>
+                                <tr>
+                                  <th>Sub Total:</th>
+                                  <td>Rp.<?php echo number_format($total_harga) ?></td>
+                                  <td></td>
+
+                                </tr>
+                                <tr>
+                                  <th>Denda :</th>
+                                  <td>Rp.<?php echo number_format($total) ?></td>
                                   <td></td>
 
                                 </tr>
                                 <tr>
                                   <th>Total:</th>
-                                  <td>Rp. <?php echo number_format($total_harga) ?></td>
+                                  <td>Rp.<?php echo number_format($total_harga+$total) ?></td>
                                   <td></td>
 
                                 </tr>

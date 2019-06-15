@@ -169,6 +169,24 @@ class Transaksi extends CI_Controller {
              $data = $this->app_admin->getharga($datanya);
             echo json_encode($data);
     }
+    function selisih_tanggal($dateline, $kembali){
+
+        $tgl_dateline = explode('-', $dateline);
+        $tgl_dateline = $tgl_dateline[2].'-'.$tgl_dateline[1].'-'.$tgl_dateline[0];
+
+        $tgl_kembali = explode('-', $kembali);
+        $tgl_kembali = $tgl_kembali[2].'-'.$tgl_kembali[1].'-'.$tgl_kembali[0];
+
+        $selisih = strtotime($tgl_kembali) - strtotime($tgl_dateline);
+        $selisih = $selisih / 86400;
+
+        if ($selisih >= 1) {
+        $hasil = floor($selisih);
+        } else {
+        $hasil = '0';
+        }
+        return $hasil;
+    }
 //get data invoice
     public function invoice($id_trans = 0)
     {
@@ -201,8 +219,12 @@ class Transaksi extends CI_Controller {
             $data['created'] = $inv->created_inv;
             $data['status_transaksi'] = $inv->status_transaksi;
             $data['bank'] = $inv->nama_bank;
+            $bts_kembali = $inv->tgl_order;
+            $tgl_kembali = $inv->tgl_akhir;
 
          }
+        $data['selisih'] = $this->selisih_tanggal($bts_kembali, $tgl_kembali);
+
 
         $time       = $this->app_admin->getinvoice($id_trans);
         $date_now   = date('Y-m-d H:i:s');
@@ -285,6 +307,23 @@ date_default_timezone_set('Asia/Jakarta');
             }
 
             
+        }
+    }
+    function get_autocomplete_supir(){
+        if (isset($_GET['term'])) {
+            $result = $this->app_admin->search_supir($_GET['term']);
+            if (count($result) > 0) {
+            foreach ($result as $row)
+                $arr_result[] = array(
+                    'label'         => $row->nama_supir,
+                    'hp_supir'   => $row->no_hp,
+                    'gender_supir'    => $row->jenis_kelamin,
+                    'alamat_supir'    => $row->alamat,
+
+
+                );
+                echo json_encode($arr_result);
+            }
         }
     }
 

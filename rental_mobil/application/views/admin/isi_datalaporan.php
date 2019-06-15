@@ -62,7 +62,7 @@
                             </td>
 
                           <td>
-                            <a href="<?php echo base_url(); ?>transaksi/invoice/<?php echo $trans->id_transaksi; ?>" class="btn btn-success"><i class="fa fa-search-plus"></i></a>
+                            <a href="<?php echo base_url(); ?>laporan/invoice/<?php echo $trans->id_transaksi; ?>" class="btn btn-success"><i class="fa fa-search-plus"></i></a>
 <!--                             <a href="<?php echo base_url(); ?>transaksi/update_trans/<?php echo $trans->id_supir; ?>" class="btn btn-warning"><i class="fa fa-edit"></i></a> -->
                           </td>
 

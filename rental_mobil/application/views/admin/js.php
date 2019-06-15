@@ -51,6 +51,7 @@
     <script src="<?php echo base_url(); ?>admin_assets/jszip/dist/jszip.min.js"></script>
     <script src="<?php echo base_url(); ?>admin_assets/pdfmake/build/pdfmake.min.js"></script>
     <script src="<?php echo base_url(); ?>admin_assets/pdfmake/build/vfs_fonts.js"></script>
+  <script src="<?php echo base_url().'admin_assets/js/jquery-ui.js'?>" type="text/javascript"></script>
 
     <script src="<?php echo base_url(); ?>admin_aseets/js/jquery.timepicker.min.css"></script>
 
@@ -259,7 +260,24 @@ $("#imgInp").change(function() {
   readURL(this);
 });
 </script>
+  <script type="text/javascript">
+    $(document).ready(function(){
 
+        $('#nama_supir').autocomplete({
+                source: "<?php echo base_url('transaksi/get_autocomplete_supir');?>",
+     
+                select: function (event, ui) {
+                    $('[name="nama_supir"]').val(ui.item.label); 
+                    $('[name="id_supir"]').val(ui.item.id_supir); 
+                    $('[name="hp_supir"]').val(ui.item.hp_supir); 
+                    $('[name="gender_supir"]').val(ui.item.gender_supir); 
+                    $('[name="alamat_supir"]').val(ui.item.alamat_supir); 
+
+                }
+            });
+
+    });
+  </script>
 <!-- $(document).on('click', '.conf', function(){
 
     $('#jqContent').load(bu+'public/invoice/conf_invoice/<?php echo $ivd->code_inv;?>');

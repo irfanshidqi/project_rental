@@ -133,8 +133,12 @@ class C_invoice extends CI_Controller {
 
 
             $id = $this->uri->segment(3);
+// update status ke seelsai
             $this->db->where('id_transaksi', $id);
             $this->db->update('tb_transaksi', ['status_transaksi' => 5]);
+// insert tgl kembali
+            $this->db->where('id_transaksi', $id);
+            $this->db->update('tb_transaksi', ['tgl_kembali' => date("Y-m-d")]);
 
             $this->session->set_flashdata('success', 'Peminjaman Selesai Telah Berhasil');
         redirect("transaksi/invoice/".$id);

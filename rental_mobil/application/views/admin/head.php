@@ -19,7 +19,9 @@
     <link href="<?php echo base_url(); ?>admin_assets/switchery/dist/switchery.min.css" rel="stylesheet">
     <!-- starrr -->
     <link href="<?php echo base_url(); ?>admin_assets/starrr/dist/starrr.css" rel="stylesheet">
-    
+
+    <link href="<?php echo base_url(); ?>admin_assets/css/jquery-ui.css" rel="stylesheet">
+
 
 
     <!-- Datatables -->

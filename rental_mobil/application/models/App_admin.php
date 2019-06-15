@@ -250,6 +250,12 @@ class App_Admin extends CI_Model {
 
 
 	}
+	function search_supir($nama){
+		$this->db->like('nama_supir', $nama , 'both');
+		$this->db->order_by('nama_supir', 'ASC');
+		$this->db->limit(10);
+		return $this->db->get('tb_supir')->result();
+	}
   	// akhir model
 
 }
