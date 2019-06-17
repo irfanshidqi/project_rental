@@ -8,6 +8,10 @@ class Laporan extends CI_Controller {
 		parent::__construct();
 		$this->load->library(array('template', 'form_validation'));
 		$this->load->model('app_admin');
+        if(!$this->session->userdata('admin'))
+        {
+            redirect('login');
+        }
 	}
 
     public function index()

@@ -268,9 +268,9 @@ $("#imgInp").change(function() {
      
                 select: function (event, ui) {
                     $('[name="nama_supir"]').val(ui.item.label); 
-                    $('[name="id_supir"]').val(ui.item.id_supir); 
+                    $('[name="id_supir"]').val(ui.item.id); 
                     $('[name="hp_supir"]').val(ui.item.hp_supir); 
-                    $('[name="gender_supir"]').val(ui.item.gender_supir); 
+                    $('[name="umur"]').val(ui.item.umur); 
                     $('[name="alamat_supir"]').val(ui.item.alamat_supir); 
 
                 }

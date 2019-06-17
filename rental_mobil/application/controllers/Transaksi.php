@@ -12,6 +12,12 @@ class Transaksi extends CI_Controller {
 // HELPER
         $this->load->helper('exDate_helper');
 
+        if(!$this->session->userdata('admin'))
+        {
+            redirect('login');
+        }
+        
+
 	}
 
     public function index()
@@ -316,8 +322,9 @@ date_default_timezone_set('Asia/Jakarta');
             foreach ($result as $row)
                 $arr_result[] = array(
                     'label'         => $row->nama_supir,
+                    'id'   => $row->id_supir,
                     'hp_supir'   => $row->no_hp,
-                    'gender_supir'    => $row->jenis_kelamin,
+                    'umur'    => $row->umur,
                     'alamat_supir'    => $row->alamat,
 
 

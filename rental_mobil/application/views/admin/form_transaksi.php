@@ -194,41 +194,36 @@
                     <br />
                     <form >
                       <div class="col-md-12 col-sm-6 col-xs-12 form-group has-feedback">
-                        <input type="text" class="form-control has-feedback-left" id="nama_supir" name="nama_supir" style="width:500px;">
+                        <input type="text" class="form-control has-feedback-left" id="nama_supir" name="nama_supir" placeholder="Cari Nama Supir Disini" >
+                        <span class="fa fa-search-plus form-control-feedback left" aria-hidden="true"></span>
+                      </div>
+                      <br>
+                      <br>
+                      <br>
+
+                      <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
+                        <input type="text" class="form-control has-feedback-left" id="id_supir" name="id_supir" placeholder="id supir" readonly="">
                         <span class="fa fa-user form-control-feedback left" aria-hidden="true"></span>
                       </div>
-                      <br>
-                      <br>
-                      <br>
 
                       <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
-                        <input type="text" class="form-control has-feedback-left" id="id_supir" name="id_supir" placeholder="id supir">
-                        <span class="fa fa-user form-control-feedback left" aria-hidden="true"></span>
+                        <input type="text" class="form-control" id="umur" name="umur" placeholder="gender supir" readonly="">
+                        <span class="fa fa-male form-control-feedback right" aria-hidden="true"></span>
                       </div>
 
                       <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
-                        <input type="text" class="form-control" id="gender_supir" placeholder="gender supir">
-                        <span class="fa fa-user form-control-feedback right" aria-hidden="true"></span>
+                        <input type="text" class="form-control has-feedback-left" name="alamat_supir" id="alamat_supir" placeholder="Alamat" readonly="">
+                        <span class="fa fa-building form-control-feedback left" aria-hidden="true" ></span>
                       </div>
 
                       <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
-                        <input type="text" class="form-control has-feedback-left" name="alamat_supir" id="alamat_supir" placeholder="Alamat">
-                        <span class="fa fa-envelope form-control-feedback left" aria-hidden="true"></span>
-                      </div>
-
-                      <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
-                        <input type="number" class="form-control" id="hp_supir" name="hp_supir" placeholder="No Hp">
+                        <input type="number" class="form-control" id="hp_supir" name="hp_supir" placeholder="No Hp" readonly="">
                         <span class="fa fa-phone form-control-feedback right" aria-hidden="true"></span>
                       </div>
 
 
                       <div class="ln_solid"></div>
-                      <div class="form-group">
-                        <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
-                          <button type="submit" class="btn btn-primary">Cancel</button>
-                          <button type="submit" class="btn btn-success">Submit</button>
-                        </div>
-                      </div>
+
 
                     </form>
                   </div>
@@ -259,14 +254,20 @@
                   <div class="x_content">
                     <br />
                     <form class="form-horizontal form-label-left input_mask">
-
+                      <div class="col-md-12 col-sm-6 col-xs-12 form-group has-feedback">
+                        <input type="text" class="form-control has-feedback-left" id="nama_pelanggan" name="nama_pelanggan" placeholder="Caru Nama Pelanggan Disini">
+                        <span class="fa fa-search-plus form-control-feedback left" aria-hidden="true"></span>
+                      </div>
+                                           <br>
+                      <br>
+                      <br> 
                       <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
                         <input type="text" class="form-control has-feedback-left" id="inputSuccess2" placeholder="First Name">
                         <span class="fa fa-user form-control-feedback left" aria-hidden="true"></span>
                       </div>
 
                       <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
-                        <input type="text" class="form-control" id="inputSuccess3" placeholder="Last Name">
+                        <input type="text" class="form-control" id="no_pelanggan" name="no_pelanggan" placeholder="No HP pelanggan">
                         <span class="fa fa-user form-control-feedback right" aria-hidden="true"></span>
                       </div>
 
