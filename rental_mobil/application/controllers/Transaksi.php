@@ -79,13 +79,15 @@ class Transaksi extends CI_Controller {
 
             'id_transaksi' => $id_trans,
             'id_merek' => $this->input->post('merek_mobil', TRUE),
+            'id_user' => $this->input->post('id_pelanggan', TRUE),
+            'id_supir' => $this->input->post('id_supir', TRUE),
             'id_mobil' => $this->input->post('tipe_mobil'),
             'status_transaksi' => 1,
             'harga' => $this->input->post('sewa', TRUE),
             'total_harga' => $this->input->post('total_harga', TRUE),
-            'nama' => $this->input->post('nama', TRUE),
-            'no_hp' => $this->input->post('no_hp', TRUE),
-            'email' => $this->input->post('email', TRUE),
+            'nama' => $this->input->post('nama_pelanggan', TRUE),
+            'no_hp' => $this->input->post('no_pelanggan', TRUE),
+            'email' => $this->input->post('email_pelanggan', TRUE),
             'tujuan' => $this->input->post('tujuan', TRUE),
             'tgl_order' => $this->input->post('tgl_start', TRUE),
             'waktu_order' => $this->input->post('waktu', TRUE),
@@ -118,7 +120,7 @@ class Transaksi extends CI_Controller {
 
 
                     $this->email->from('triplets.cv@gmail.com', "rentcar");
-                    $this->email->to($this->input->post('email', TRUE));
+                    $this->email->to($this->input->post('email_pelanggan', TRUE));
                     $this->email->subject('Penyewaan Mobil ');
                     $this->email->message(
 

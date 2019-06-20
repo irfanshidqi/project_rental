@@ -107,8 +107,7 @@ class C_invoice extends CI_Controller {
             $this->db->where('id_transaksi', $id);
             $this->db->update('tb_transaksi', ['status_transaksi' => 4]);
 
-            $this->db->where('id_transaksi', $id);
-            $this->db->update('tb_transaksi', ['denda' => ]);
+
 
             $this->session->set_flashdata('success', 'Konfirmasi Telah Berhasil');
         redirect("transaksi/invoice/".$id);
@@ -138,7 +137,7 @@ class C_invoice extends CI_Controller {
     }
     public function peminjaman_selesai(){
 
-
+        $denda = $this->input->post('denda');
             $id = $this->uri->segment(3);
 // update status ke seelsai
             $this->db->where('id_transaksi', $id);
@@ -146,6 +145,10 @@ class C_invoice extends CI_Controller {
 // insert tgl kembali
             $this->db->where('id_transaksi', $id);
             $this->db->update('tb_transaksi', ['tgl_kembali' => date("Y-m-d")]);
+//insert denda
+            $this->db->where('id_transaksi', $id);
+            $this->db->update('tb_transaksi', ['denda' => $denda ]);
+
 
             $this->session->set_flashdata('success', 'Peminjaman Selesai Telah Berhasil');
         redirect("transaksi/invoice/".$id);

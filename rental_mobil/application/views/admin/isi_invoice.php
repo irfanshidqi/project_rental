@@ -374,6 +374,8 @@
 
 }
 ?>
+              </form> 
+
 <?php if($status_transaksi == 3){ ?>
 
 <a href="<?php echo base_url()."C_invoice/konfirmasi_peminjaman/".$id;?>" class="btn btn-success pull-right" data-toggle="modal"><i class="fa fa-credit-card"></i> Konfirmasi Peminjaman Mobil</a>
@@ -381,18 +383,19 @@
 <?php }?>
 <?php if($status_transaksi == 4){ ?>
 
-  <form action="">
-    
+  <form action="<?php echo base_url()."C_invoice/peminjaman_selesai/".$id;?>" method="post" >
+
+    <input type="hidden" name="denda" value="<?php echo $denda; ?>">
+
+<button type="submit" class="btn btn-success"name="submit" value="Submit" >Verifikasi Peminjaman Selesai</button>
   </form>
 
-<a href="<?php echo base_url()."C_invoice/peminjaman_selesai/".$id;?>" class="btn btn-success pull-right" data-toggle="modal"><i class="fa fa-credit-card"></i> Konfirmasi Peminjaman Mobil Telah Selesei</a>
 
 <?php }?>
 
           </div>
 
 
-              </form> 
 <!-- <form action="<?php echo base_url().'invoice/pembatalan/'.$id;?>" method="post">
               <button type="submit" class="btn btn-danger"name="submit" value="Submit" >Batalkan Transaksi</button>
 

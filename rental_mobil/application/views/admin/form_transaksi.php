@@ -64,7 +64,7 @@
                           <input type="number" class="form-control" readonly="readonly"  id="harga_sewa" placeholder="Harga Sewa Perhari" name="sewa" >
                         </div>
                       </div>
-                      <div class="form-group">
+<!--                       <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Nama</label>
                         <div class="col-md-9 col-sm-9 col-xs-12">
                           <input type="text" class="form-control" name="nama" placeholder="Nama lengkap">
@@ -81,7 +81,7 @@
                         <div class="col-md-9 col-sm-9 col-xs-12">
                           <input type="text" class="form-control" name="email" placeholder="Email">
                         </div>
-                      </div>
+                      </div> -->
                       <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Tujuan	</label>
                         <div class="col-md-9 col-sm-9 col-xs-12">
@@ -164,7 +164,6 @@
                         </div>
                       </div>
 
-                    </form>
                   </div>
                 </div>
             </div>
@@ -192,7 +191,6 @@
                   </div>
                   <div class="x_content">
                     <br />
-                    <form >
                       <div class="col-md-12 col-sm-6 col-xs-12 form-group has-feedback">
                         <input type="text" class="form-control has-feedback-left" id="nama_supir" name="nama_supir" placeholder="Cari Nama Supir Disini" >
                         <span class="fa fa-search-plus form-control-feedback left" aria-hidden="true"></span>
@@ -225,7 +223,6 @@
                       <div class="ln_solid"></div>
 
 
-                    </form>
                   </div>
                 </div>
               </div>
@@ -253,7 +250,6 @@
                   </div>
                   <div class="x_content">
                     <br />
-                    <form class="form-horizontal form-label-left input_mask">
                       <div class="col-md-12 col-sm-6 col-xs-12 form-group has-feedback">
                         <input type="text" class="form-control has-feedback-left" id="nama_pelanggan" name="nama_pelanggan" placeholder="Caru Nama Pelanggan Disini">
                         <span class="fa fa-search-plus form-control-feedback left" aria-hidden="true"></span>
