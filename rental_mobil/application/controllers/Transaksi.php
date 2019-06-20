@@ -109,7 +109,7 @@ class Transaksi extends CI_Controller {
                     $config['smtp_port'] ='465';
                     $config['smtp_timeout'] = '5';
                     $config['smtp_user'] = 'triplets.cv@gmail.com';//email gmail
-                    $config['smtp_pass'] = 'polijetriplets123';//isi passowrd email
+                    $config['smtp_pass'] = 'polije123456';//isi passowrd email
                     $config['crlf'] = "\r\n";
                     $config['newline'] = "\r\n";
                     $config['wordwrap'] = TRUE;

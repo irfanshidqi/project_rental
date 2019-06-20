@@ -66,19 +66,19 @@ class api_login extends REST_Controller {
 
 
 
-                    $this->response(['data' => $datauser,'pesan' => 'success login'], REST_Controller::HTTP_OK);
+                    $this->response(['login' => $datauser,'success' => '1','pesan' => 'success login'], REST_Controller::HTTP_OK);
 
 
                 } else {
 
-                    $this->response(['login' => FALSE,'pesan' => 'Password Anda Salah'],REST_Controller::HTTP_BAD_REQUEST);
+                    $this->response(['login' => FALSE,'gagal' => '0','pesan' => 'Password Anda Salah'],REST_Controller::HTTP_BAD_REQUEST);
 
 
                 }
                 
 
             } else {
-                $this->response(['login' => FALSE, 'pesan' => 'Username Tidak Terdaftar'],REST_Controller::HTTP_BAD_REQUEST);
+                $this->response(['login' => FALSE,'gagal' => '3', 'pesan' => 'Username Tidak Terdaftar'],REST_Controller::HTTP_BAD_REQUEST);
 
             }
 

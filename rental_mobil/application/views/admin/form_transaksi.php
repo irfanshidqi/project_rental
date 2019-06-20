@@ -262,12 +262,12 @@
                       <br>
                       <br> 
                       <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
-                        <input type="email" class="form-control has-feedback-left" id="email_pelanggan" name="email_pelanggan" placeholder="Email">
+                        <input type="email" class="form-control has-feedback-left" id="email_pelanggan" name="email_pelanggan" placeholder="Email" readonly="">
                         <span class="fa fa-envelope form-control-feedback left" aria-hidden="true"></span>
                       </div>
 
                       <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
-                        <input type="number" class="form-control" id="no_pelanggan" name="no_pelanggan" placeholder="No.HP pelanggan">
+                        <input type="number" class="form-control" id="no_pelanggan" name="no_pelanggan" placeholder="No.HP pelanggan" readonly="">
                         <span class="fa fa-user form-control-feedback right" aria-hidden="true"></span>
                       </div>
                         <input type="hidden" class="form-control" id="id_pelanggan" name="id_pelanggan" >
