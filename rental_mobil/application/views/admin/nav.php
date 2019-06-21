@@ -41,6 +41,7 @@
                       <li><a href="<?php echo base_url().'transaksi/tr_wait' ?>">Menunggu Konfirmasi</a></li>
                       <li><a href="<?php echo base_url().'transaksi/tr_lunas' ?>">Pembayaran Lunas</a></li>
                       <li><a href="<?php echo base_url().'transaksi/tr_berlangsung' ?>">Peminjaman Berlangsung</a></li>
+                      <li><a href="<?php echo base_url().'laporan/tr_selesai' ?>">Transaksi Selesai</a></li>
 
 
 
@@ -50,7 +51,7 @@
                   </li>
                   <li><a><i class="fa fa-book"></i> Laporan <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="<?php echo base_url().'laporan' ?>">Transaksi Selesai</a></li>
+                      <li><a href="<?php echo base_url().'laporan' ?>">Laporan Bulanan Transaksi</a></li>
 
 
                     </ul>

@@ -264,6 +264,18 @@ class App_Admin extends CI_Model {
 
 		return $this->db->get('tb_user')->result();
 	}
+
+	function report($where = '')
+	{
+		$this->db->select(array(
+				'tr.id_transaksi as id_transaksi','tr.nama','tr.tgl_order','tr.lama_peminjaman','tr.harga','tr.total_harga','SUM(denda) as denda'));
+		$this->db->from('tb_transaksi tr JOIN tb_user u ON (tr.id_user = u.id_user)');
+
+		$this->db->where($where);
+		$this->db->group_by('tr.id_transaksi');
+
+		return $this->db->get();
+	}
   	// akhir model
 
 }
