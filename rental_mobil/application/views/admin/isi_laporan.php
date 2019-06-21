@@ -148,10 +148,11 @@
                   </tr>
                 <?php endforeach; ?>
                   <tr>
+<?php $semua = $key->total_harga+$key->denda; ?>
                      <td colspan="8" style="text-align:center"><b>Pendapatan</b></td>
                      <td>
                         <b>
-                           <span style="float:left">Rp.<?php echo number_format($pendapatan); ?></span>
+                           <span style="float:left">Rp.<?php echo number_format($pendapatan+$semua); ?></span>
                            <span style="float:right">,-</span>
                         </b>
                      </td>
