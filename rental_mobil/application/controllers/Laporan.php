@@ -30,7 +30,7 @@ class Laporan extends CI_Controller {
         $awal = $thn.'-'.$bln.'-01'; 
         $akhir = $thn.'-'.$bln.'-31';
         $status = 5;
-        $where = ['tr.tgl_order >=' => $awal, 'tr.tgl_order <=' => $akhir, 'tr.status_transaksi'=> $status];
+        $where = ['tr.created_inv >=' => $awal, 'tr.created_inv <=' => $akhir, 'tr.status_transaksi'=> $status];
 
         $data['data'] = $this->app_admin->report($where);
         $data['bln'] = $bln;
@@ -111,7 +111,7 @@ class Laporan extends CI_Controller {
 
 
         // $data['data'] = $this->app_admin->getMobil();
-        $this->template->admin('admin/isi_invoice', $data);
+        $this->template->admin('admin/isi_invoice_selesai', $data);
     }
 
 

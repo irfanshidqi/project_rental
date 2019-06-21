@@ -98,6 +98,10 @@
                           <b>Payment Due:</b> <?php echo $tgl_akhir; ?>
                           <br>
                           <b>Account:</b> <?php echo $bank; ?>
+                          <br>
+                          <b>Denda:</b> Rp.<?php echo number_format($total); ?>
+                          <br>
+                          <b>Terlambat:</b> <?php echo $selisih; ?> hari
                         </div>
                         <!-- /.col -->
                       </div>
@@ -198,53 +202,35 @@
 
                                 </tr>
                                 <tr>
-                                  <th>Tenggat Waktu :</th>
-    <?php if($selisih < 0):?>
-                                  <td>Telat <?php echo $telat ?> Hari  </td>
-
-
-    <?php else:?>
-                                  <td><?php echo $selisih ?> Hari Lagi </td>
-
-    <?php endif;?>
-
+                                  <th>Tgl Kembali :</th>
+                                  <td><?php echo $tgl_kembali ?></td>
                                   <td></td>
 
                                 </tr>
-    <?php if($selisih < 0):?>
+                                <tr>
+                                  <th>Terlambat :</th>
+                                  <td><?php echo $selisih ?> Hari </td>
+                                  <td></td>
+
+                                </tr>
+                                <tr>
+                                  <th>Sub Total:</th>
+                                  <td>Rp.<?php echo number_format($total_harga) ?></td>
+                                  <td></td>
+
+                                </tr>
                                 <tr>
                                   <th>Denda :</th>
-                                  <td>Rp.<?php echo number_format($harga_sewa*$telat) ?> </td>
+                                  <td>Rp.<?php echo number_format($total) ?></td>
                                   <td></td>
 
                                 </tr>
-
-
-    <?php else:?>
-
-    <?php endif;?>
-    <?php if($selisih < 0):?>
-    <?php $denda = $harga_sewa*$telat; ?>
                                 <tr>
                                   <th>Total:</th>
-                                  <td>Rp. <?php echo number_format($total_harga+$denda) ?></td>
-
+                                  <td>Rp.<?php echo number_format($total_harga+$total) ?></td>
                                   <td></td>
 
                                 </tr>
-
-
-    <?php else:?>
-
-                                <tr>
-                                  <th>Total:</th>
-                                  <td>Rp. <?php echo number_format($total_harga) ?></td>
-
-                                  <td></td>
-
-                                </tr>
-    <?php endif;?>
-
                               </tbody>
                             </table>
                             <br>
@@ -374,37 +360,21 @@
 
 }
 ?>
-              </form> 
-
 <?php if($status_transaksi == 3){ ?>
 
 <a href="<?php echo base_url()."C_invoice/konfirmasi_peminjaman/".$id;?>" class="btn btn-success pull-right" data-toggle="modal"><i class="fa fa-credit-card"></i> Konfirmasi Peminjaman Mobil</a>
 
 <?php }?>
 <?php if($status_transaksi == 4){ ?>
-    <?php $denda = $harga_sewa*$telat; ?>
 
-  <form action="<?php echo base_url()."C_invoice/peminjaman_selesai/".$id;?>" method="post" >
-<?php if($denda < 0){
-
-  echo '   <input type="hidden" name="denda" value="<?php echo '.$denda.' ?>">';
-}else{
-  echo '   <input type="hidden" name="denda" value="0">';
-
-}
- ?>
-
-
-
-<button type="submit" class="btn btn-success"name="submit" value="Submit" >Verifikasi Peminjaman Selesai</button>
-  </form>
-
+<a href="<?php echo base_url()."C_invoice/peminjaman_selesai/".$id;?>" class="btn btn-success pull-right" data-toggle="modal"><i class="fa fa-credit-card"></i> Konfirmasi Peminjaman Mobil Telah Selesei</a>
 
 <?php }?>
 
           </div>
 
 
+              </form> 
 <!-- <form action="<?php echo base_url().'invoice/pembatalan/'.$id;?>" method="post">
               <button type="submit" class="btn btn-danger"name="submit" value="Submit" >Batalkan Transaksi</button>
 
