@@ -107,6 +107,9 @@ class C_invoice extends CI_Controller {
             $this->db->where('id_transaksi', $id);
             $this->db->update('tb_transaksi', ['status_transaksi' => 4]);
 
+            $this->db->where('id_transaksi', $id);
+            $this->db->update('tb_transaksi', ['denda' => ]);
+
             $this->session->set_flashdata('success', 'Konfirmasi Telah Berhasil');
         redirect("transaksi/invoice/".$id);
 

@@ -278,6 +278,28 @@ $("#imgInp").change(function() {
 
     });
   </script>
+  <script type="text/javascript">
+    $(document).ready(function(){
+
+      $('#nama_pelanggan').autocomplete({
+
+        source: "<?php echo base_url('transaksi/get_autocomplete_pelanggan');?>",
+
+                        select: function (event, ui) {
+                    $('[name="nama_pelanggan"]').val(ui.item.label); 
+                    $('[name="id_pelanggan"]').val(ui.item.id); 
+                    $('[name="no_pelanggan"]').val(ui.item.hp_pelanggan); 
+                    $('[name="email_pelanggan"]').val(ui.item.email_pelanggan); 
+
+                }
+
+      });
+
+
+    });
+    
+
+  </script>
 <!-- $(document).on('click', '.conf', function(){
 
     $('#jqContent').load(bu+'public/invoice/conf_invoice/<?php echo $ivd->code_inv;?>');

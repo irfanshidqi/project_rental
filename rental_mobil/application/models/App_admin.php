@@ -256,6 +256,14 @@ class App_Admin extends CI_Model {
 		$this->db->limit(10);
 		return $this->db->get('tb_supir')->result();
 	}
+
+	function search_pelanggan($nama){
+		$this->db->like('nama', $nama, 'both');
+		$this->db->order_by('nama', 'ASC');
+		$this->db->limit(10);
+
+		return $this->db->get('tb_user')->result();
+	}
   	// akhir model
 
 }

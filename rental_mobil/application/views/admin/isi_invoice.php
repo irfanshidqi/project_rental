@@ -199,16 +199,52 @@
                                 </tr>
                                 <tr>
                                   <th>Tenggat Waktu :</th>
+    <?php if($selisih < 0):?>
+                                  <td>Telat <?php echo $telat ?> Hari  </td>
+
+
+    <?php else:?>
                                   <td><?php echo $selisih ?> Hari Lagi </td>
+
+    <?php endif;?>
+
                                   <td></td>
 
                                 </tr>
+    <?php if($selisih < 0):?>
+                                <tr>
+                                  <th>Denda :</th>
+                                  <td>Rp.<?php echo number_format($harga_sewa*$telat) ?> </td>
+                                  <td></td>
+
+                                </tr>
+
+
+    <?php else:?>
+
+    <?php endif;?>
+    <?php if($selisih < 0):?>
+    <?php $denda = $harga_sewa*$telat; ?>
+                                <tr>
+                                  <th>Total:</th>
+                                  <td>Rp. <?php echo number_format($total_harga+$denda) ?></td>
+
+                                  <td></td>
+
+                                </tr>
+
+
+    <?php else:?>
+
                                 <tr>
                                   <th>Total:</th>
                                   <td>Rp. <?php echo number_format($total_harga) ?></td>
+
                                   <td></td>
 
                                 </tr>
+    <?php endif;?>
+
                               </tbody>
                             </table>
                             <br>
@@ -344,6 +380,10 @@
 
 <?php }?>
 <?php if($status_transaksi == 4){ ?>
+
+  <form action="">
+    
+  </form>
 
 <a href="<?php echo base_url()."C_invoice/peminjaman_selesai/".$id;?>" class="btn btn-success pull-right" data-toggle="modal"><i class="fa fa-credit-card"></i> Konfirmasi Peminjaman Mobil Telah Selesei</a>
 

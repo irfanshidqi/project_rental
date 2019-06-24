@@ -189,7 +189,7 @@ class Transaksi extends CI_Controller {
         if ($selisih >= 1) {
         $hasil = floor($selisih);
         } else {
-        $hasil = '0';
+        $hasil = floor($selisih);
         }
         return $hasil;
     }
@@ -225,11 +225,15 @@ class Transaksi extends CI_Controller {
             $data['created'] = $inv->created_inv;
             $data['status_transaksi'] = $inv->status_transaksi;
             $data['bank'] = $inv->nama_bank;
-            $bts_kembali = $inv->tgl_order;
+            $bts_kembali = date('Y-m-d');
             $tgl_kembali = $inv->tgl_akhir;
+            $batas = $inv->tgl_akhir;
+            $telat = date('Y-m-d');
 
          }
         $data['selisih'] = $this->selisih_tanggal($bts_kembali, $tgl_kembali);
+        $data['telat'] = $this->selisih_tanggal($batas, $telat);
+
 
 
         $time       = $this->app_admin->getinvoice($id_trans);
@@ -326,6 +330,23 @@ date_default_timezone_set('Asia/Jakarta');
                     'hp_supir'   => $row->no_hp,
                     'umur'    => $row->umur,
                     'alamat_supir'    => $row->alamat,
+
+
+                );
+                echo json_encode($arr_result);
+            }
+        }
+    }
+    function get_autocomplete_pelanggan(){
+        if (isset($_GET['term'])) {
+            $result = $this->app_admin->search_pelanggan($_GET['term']);
+            if (count($result) > 0) {
+            foreach ($result as $row)
+                $arr_result[] = array(
+                    'label'         => $row->nama,
+                    'id'   => $row->id_user,
+                    'hp_pelanggan'   => $row->no_hp,
+                    'email_pelanggan'    => $row->email,
 
 
                 );

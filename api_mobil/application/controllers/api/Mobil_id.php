@@ -26,7 +26,7 @@ class Mobil_id extends REST_Controller {
 
     	}
 
-	    $this->response(['data' => $key], REST_Controller::HTTP_OK);
+	    $this->response([$key], REST_Controller::HTTP_OK);
 
 
 	}

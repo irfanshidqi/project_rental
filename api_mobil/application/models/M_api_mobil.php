@@ -16,4 +16,19 @@ class M_api_mobil extends CI_Model
 
 		return $this->db->get();
 	}
+  	function get_allinvoice(){
+
+  		$this->db->select('*');
+  		$this->db->from('tb_mobil mb');
+  		$this->db->join('tb_merek_mobil mr', 'mr.id_merek=mb.id_merek', 'left');
+
+
+  		$query = $this->db->get();
+
+  		if($query->num_rows() != 0){
+  			return $query->result();
+  		}else{
+  			return false;
+  		}
+  	}
 }

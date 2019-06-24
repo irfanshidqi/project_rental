@@ -17,7 +17,7 @@ class Api_mobil extends REST_Controller {
 
     	$mobil = $this->mobil->get_all('tb_mobil');
 
-	    $this->response(['data' => $mobil], REST_Controller::HTTP_OK);
+	    $this->response($mobil, REST_Controller::HTTP_OK);
 
 
 	}
