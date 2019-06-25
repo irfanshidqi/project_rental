@@ -64,21 +64,30 @@ class api_login extends REST_Controller {
                     $this->db->where(['id_user' =>$data_[0]['id_user'] ]);
                     $this->db->update('tb_user', ['last_login' => date("Y-m-d H:i:s")]);
 
+            $data['login'] = $datauser;
+            $data['success'] = "1";
+            $data['message'] = "success";
+            echo json_encode($data);
 
 
-                    $this->response(['login' => $datauser,'success' => '1','pesan' => 'success login'], REST_Controller::HTTP_OK);
 
 
                 } else {
 
-                    $this->response(['login' => FALSE,'gagal' => '0','pesan' => 'Password Anda Salah'],REST_Controller::HTTP_BAD_REQUEST);
+            $data['login'] = [];
+            $data['success'] = "0";
+            $data['message'] = "gagal password salah";
+            echo json_encode($data);
 
 
                 }
                 
 
             } else {
-                $this->response(['login' => FALSE,'gagal' => '3', 'pesan' => 'Username Tidak Terdaftar'],REST_Controller::HTTP_BAD_REQUEST);
+            $data['login'] = [];
+            $data['success'] = "2";
+            $data['message'] = "username salah";
+            echo json_encode($data);
 
             }
 
