@@ -52,7 +52,7 @@ class Api_register extends REST_Controller {
 
 			if($tambah){
 				$this->response([
-					'sukses' => true,
+					'sukses' => "1",
 					'pesan' => 'register berhasil'
 				],REST_Controller::HTTP_CREATED);
 			} else {

@@ -13,9 +13,9 @@ class Mobil_id extends REST_Controller {
 		$this->load->model('M_api_mobil','mobil');
 	}
 
-	public function index_get(){
+	public function index_post(){
 
-	$id_mobil = $this->uri->segment(3);		
+	// $id_mobil = $this->uri->segment(3);		
 
 
     	$mobil = $this->mobil->get_where('tb_mobil',array('id_mobil' => $id_mobil));

@@ -44,6 +44,15 @@ class m_apilogin extends CI_Model
 		$this->db->where($where);
 		$this->db->delete($table);
 	}
+    function login_api($username, $password)
+
+    {
+
+        $result = $this->db->query("SELECT * FROM tb_user WHERE username = '$username'");
+
+        return $result->result_array();
+
+    }
 
 }
 
