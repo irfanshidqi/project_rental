@@ -110,7 +110,7 @@ if($this->session->flashdata('error'))
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Tanggal Lahir <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="date" id="tgl_lahir" name="tgl_lahir" value="" required="required" class="form-control col-md-7 col-xs-12">
+                          <input type="date" id="tgl_lahir" name="tgl_lahir" value="<?= $tgl_lahir; ?>" required="required" class="form-control col-md-7 col-xs-12">
                         </div>
                       </div>
 

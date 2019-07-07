@@ -241,7 +241,21 @@ setInterval(timer, 1000 );
 
 
 </script>
+<!-- auto check transaksi yg batal -->
+<script type="text/javascript">
 
+
+    function check()
+    {
+        $('#check').load('http://localhost/project_rental/rental_mobil/transaksi/checkinv');
+    }
+
+    setInterval(check, 1000);
+
+
+</script>
+
+<!-- penampilan gambar seetelah upload -->
 <script type="text/javascript">
   
   function readURL(input) {
@@ -260,6 +274,8 @@ $("#imgInp").change(function() {
   readURL(this);
 });
 </script>
+
+<!-- auto complete search di inputan supir -->
   <script type="text/javascript">
     $(document).ready(function(){
 
@@ -278,6 +294,8 @@ $("#imgInp").change(function() {
 
     });
   </script>
+<!-- auto complete search di inputan pelanggan -->
+
   <script type="text/javascript">
     $(document).ready(function(){
 

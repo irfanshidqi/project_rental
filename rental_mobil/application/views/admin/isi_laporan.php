@@ -92,7 +92,7 @@
             <h3>Laporan Bulan <?php echo $Bulan; ?> Tahun <?php echo $thn; ?></h3>
          </div>
          <div class="col-md-1 col-sm-12 col-md-offset-1">
-            <a href="#" class="btn btn-success"><i class="fa fa-print"></i></a>
+            <a href="#" onclick="window.print();" class="btn btn-success"><i class="fa fa-print"></i></a>
          </div>
 
          <div class="col-md-12 col-sm-12">
@@ -111,14 +111,14 @@
                   </tr>
                </thead>
                <tbody>
-
+<?php if(!empty($data->result())){  ?>
                 <?php 
 
                   $no = 1;
                   $pendapatan = 0;
 
                   foreach ($data->result() as $key) :
-                      $pendapatan += $key->total_harga;
+                      $pendapatan += $key->total_harga+$key->denda;
                   
 
                  ?>
@@ -147,18 +147,34 @@
                      </td>
                   </tr>
                 <?php endforeach; ?>
+<?php }else{
+  echo '                    <td colspan="8" class="text-muted" style="text-align:center"><b style="text-align:center">Tidak Ada Data Transaksi Pada Bulan Ini</b></td>
+  <td></td>
+';
+}  ?>
                   <tr>
-<?php $semua = $key->total_harga+$key->denda; ?>
+<!-- <?php if(!empty($key)){
+$semua = $key->total_harga+$key->denda;
+}else{
+} ?> -->
                      <td colspan="8" style="text-align:center"><b>Pendapatan</b></td>
                      <td>
                         <b>
-                           <span style="float:left">Rp.<?php echo number_format($pendapatan+$semua); ?></span>
+                           <span style="float:left">Rp.
+<?php if(!empty($semua)){
+      echo number_format($pendapatan);
+}  ?>
+  
+</span>
                            <span style="float:right">,-</span>
                         </b>
                      </td>
+
                   </tr>
+
                </tbody>
             </table>
+
          </div>
 
          <div class="col-md-6 col-sm-6">

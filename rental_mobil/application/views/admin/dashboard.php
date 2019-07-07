@@ -16,6 +16,7 @@
         <!-- page content -->
         <div class="right_col" role="main">
            <div class="">
+            <div class="text-center" id="check"></div>
 
 <?php  echo $content; ?>
         </div>

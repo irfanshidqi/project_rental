@@ -259,7 +259,7 @@ class Transaksi extends CI_Controller {
     public function timer($id_trans){
 
         $inv = $this->app_admin->getinvoice($id_trans);
-date_default_timezone_set('Asia/Jakarta');
+        date_default_timezone_set('Asia/Jakarta');
         $date_now   = date('Y-m-d H:i:s');
 
         foreach($inv as $row)
@@ -273,11 +273,11 @@ date_default_timezone_set('Asia/Jakarta');
             if($diff->h > 0)
             {
                 //update status transaksi jadi batal
-                $this->db->where(['id_transaksi' => $row->id_transaksi]);
-                $this->db->update('tb_transaksi',['status_transaksi' => 9]);
-                //update status mobil menjadi Tersedia
-                $this->db->where(['id_mobil' => $row->id_mobil]);
-                $this->db->update('tb_mobil', ['status_sewa' => 1]);
+                // $this->db->where(['id_transaksi' => $row->id_transaksi]);
+                // $this->db->update('tb_transaksi',['status_transaksi' => 9]);
+                // //update status mobil menjadi Tersedia
+                // $this->db->where(['id_mobil' => $row->id_mobil]);
+                // $this->db->update('tb_mobil', ['status_sewa' => 1]);
 
 
             echo "<div class='btn btn-danger pull-right'><i class='fa fa-credit-card'>Waktu Pembayaran Telah Habis</div>";
@@ -296,12 +296,14 @@ date_default_timezone_set('Asia/Jakarta');
     }
 }
 //auto update status ketika timer habis
-    public function checkinv($id_trans)
+    public function checkinv()
     {
-        $inv = $this->app_admin->getinvoice($id_trans);
+        $inv = $this->app_admin->get_pending();
         date_default_timezone_set('Asia/Jakarta');
 
         $date_now   = date('Y-m-d H:i:s');
+
+if (!empty($inv)) {
 
         foreach($inv as $row)
         {
@@ -313,14 +315,22 @@ date_default_timezone_set('Asia/Jakarta');
 
             if($diff->h > 0)
             {
+                //update status transaksi jadi batal
                 $this->db->where(['id_transaksi' => $row->id_transaksi]);
                 $this->db->update('tb_transaksi',['status_transaksi' => 9]);
+                //update status mobil menjadi Tersedia
+                $this->db->where(['id_mobil' => $row->id_mobil]);
+                $this->db->update('tb_mobil', ['status_sewa' => 1]);
+
+        
 
             }
 
             
         }
-    }
+   } 
+
+}
     function get_autocomplete_supir(){
         if (isset($_GET['term'])) {
             $result = $this->app_admin->search_supir($_GET['term']);

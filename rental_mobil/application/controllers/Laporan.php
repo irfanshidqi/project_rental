@@ -114,6 +114,17 @@ class Laporan extends CI_Controller {
         $this->template->admin('admin/isi_invoice_selesai', $data);
     }
 
+    // public function cetak()
+    // {
+    //     if (!is_numeric($this->uri->segment(3)) || !is_numeric($this->uri->segment(4)) ) 
+    //     {
+    //         redirect()
+    //     } else {
+    //         # code...
+    //     }
+        
+    // }
+
 
 
 
