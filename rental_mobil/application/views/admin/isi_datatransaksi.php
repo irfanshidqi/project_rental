@@ -1,4 +1,3 @@
-            <div class="text-center" id="check"></div>
         <div class="page-title">
               <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">

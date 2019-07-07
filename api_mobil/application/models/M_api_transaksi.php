@@ -3,6 +3,16 @@
 
 class M_api_transaksi extends CI_Model
 {
+	
+	function insert($table = '', $data= ''){
+		$this->db->insert($table,$data);
+	}
+		function get_all($table)
+	{
+		$this->db->from($table);
+
+		return $this->db->get()->result();
+	}
 	function trans_by_id($id_user)
 	{
   		$this->db->select('*');
