@@ -181,7 +181,7 @@ class Transaksi extends CI_Controller {
              $data = $this->app_admin->getharga($datanya);
             echo json_encode($data);
     }
-    function selisih_tanggal($dateline, $kembali){
+    public function selisih_tanggal($dateline, $kembali){
 
         $tgl_dateline = explode('-', $dateline);
         $tgl_dateline = $tgl_dateline[2].'-'.$tgl_dateline[1].'-'.$tgl_dateline[0];

@@ -127,9 +127,18 @@
     
     <!-- Custom Theme Scripts -->
     <script src="<?php echo base_url(); ?>admin_assets/js/custom.min.js"></script>
+    
+    <!-- slide up flash data session -->
     <script type="text/javascript"> 
 		$('.alert-message').alert().delay(4000).slideUp('slow');
     </script>
+
+    <!-- tanggal pesan tidak boleh kurang dari tanggal sekarang -->
+    <script type="text/javascript">
+     document.getElementById('dt').min = new Date(new Date().getTime() - new Date().getTimezoneOffset() * 60000).toISOString().split("T")[0];
+
+    </script>
+
 <!-- ajax dropdown  -->
     <script type="text/javascript">
   

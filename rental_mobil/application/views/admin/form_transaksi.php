@@ -84,7 +84,7 @@
                       <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Tanggal Pesan</label>
                         <div class="col-md-9 col-sm-9 col-xs-12">	
-                             <input type="date" class="form-control has-feedback-left" id="single_cal3" placeholder="First Name" aria-describedby="inputSuccess2Status3" name="tgl_start" required="required">
+                             <input type="date" class="form-control has-feedback-left" id="dt"  placeholder="First Name" aria-describedby="inputSuccess2Status3" name="tgl_start" required="required">
                                 <span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span>
                               <span id="inputSuccess2Status3" class="sr-only">(success)</span>
                        </div>

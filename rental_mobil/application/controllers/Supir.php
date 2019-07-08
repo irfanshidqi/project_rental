@@ -13,7 +13,7 @@ class Supir extends CI_Controller {
             redirect('login');
         }
 	}
-
+// menampilkan data supir semua
     public function index()
     {
 
@@ -21,7 +21,7 @@ class Supir extends CI_Controller {
     	$this->template->admin('admin/isi_datasupir', $data);
     }
 
-
+// tambah supir
 	public function tambah_supir()
 	{
 
@@ -98,7 +98,7 @@ if ($this->input->post('submit', TRUE) == 'Submit')
 		$this->template->admin('admin/form_tambahsupir', $data);
 	}
 
-	
+// menampilkan detail data supir
 	public function detail()
 	{
 		$id_supir = $this->uri->segment(3);
