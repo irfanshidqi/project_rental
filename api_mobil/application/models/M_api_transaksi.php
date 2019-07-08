@@ -30,4 +30,22 @@ class M_api_transaksi extends CI_Model
   			return false;
   		}
   	}
+  function get_id_transaksi(){
+        $q = $this->db->query("SELECT MAX(RIGHT(id_transaksi,5)) AS kd_max FROM tb_transaksi ");
+        $kd = "";
+        $tm = "TR";
+        if($q->num_rows()>0){
+            foreach($q->result() as $k){
+
+                $tmp = ((int)$k->kd_max)+1;
+                $kd = sprintf("%05s", $tmp );
+            }
+        }else{
+            $kd = "00001";
+        }
+
+    return $tm.date('ymd').$kd;
+    }
+    // end model
+
   }

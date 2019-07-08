@@ -12,10 +12,7 @@ class Transaksi extends CI_Controller {
 // HELPER
         $this->load->helper('exDate_helper');
 
-        if(!$this->session->userdata('admin'))
-        {
-            redirect('login');
-        }
+
         
 
 	}
@@ -83,6 +80,7 @@ class Transaksi extends CI_Controller {
             'id_supir' => $this->input->post('id_supir', TRUE),
             'id_mobil' => $this->input->post('tipe_mobil'),
             'status_transaksi' => 1,
+            'status_notif' => 0,
             'harga' => $this->input->post('sewa', TRUE),
             'total_harga' => $this->input->post('total_harga', TRUE),
             'nama' => $this->input->post('nama_pelanggan', TRUE),
@@ -371,6 +369,108 @@ if (!empty($inv)) {
                 );
                 echo json_encode($arr_result);
             }
+        }
+    }
+// function get_waktu_berlalu($time)
+// {
+//     $time_difference = time() - $time;
+
+//     if( $time_difference < 1 ) { return 'less than 1 second ago'; }
+//     $condition = array( 12 * 30 * 24 * 60 * 60 =>  'year',
+//                 30 * 24 * 60 * 60       =>  'month',
+//                 24 * 60 * 60            =>  'day',
+//                 60 * 60                 =>  'hour',
+//                 60                      =>  'minute',
+//                 1                       =>  'second'
+//     );
+
+//     foreach( $condition as $secs => $str )
+//     {
+//         $d = $time_difference / $secs;
+
+//         if( $d >= 1 )
+//         {
+//             $t = round( $d );
+//             return 'about ' . $t . ' ' . $str . ( $t > 1 ? 's' : '' ) . ' ago';
+//         }
+//     }
+// }
+
+    // notif
+    public function notif()
+    {
+        $input = $this->input->post();
+        if(isset($input['view'])){
+
+        // $con = mysqli_connect("localhost", "root", "", "notif");
+
+        if($input["view"] != '')
+        {
+        $this->db->where('status_notif' , 0);
+        $this->db->update('tb_transaksi',['status_notif' => 1]);
+             // $this->app_admin->update('tb_transaksi',1,);
+
+            // $update_query = "UPDATE comments SET comment_status = 1 WHERE comment_status=0";
+            // mysqli_query($con, $update_query);
+        }
+
+            $query = $this->app_admin->notif_id();
+        // $query = "SELECT * FROM comments ORDER BY comment_id DESC LIMIT 5";
+        // $result = mysqli_query($con, $query);
+            $output = '';
+        if($query->num_rows() > 0)
+        {
+            foreach ($query->result() as $row) {
+
+               $output .= '
+                   <li>
+                   <a href="'.base_url().'transaksi/invoice/'.$row->id_transaksi.'">
+                   <strong>'.$row->nama.'</strong><br />
+                   <span class="time">'.$row->id_transaksi.'</span>
+
+                   <small><em>Memesan Mobil</em></small>
+                   </a>
+                   </li>
+               ';
+
+            }
+
+         // while($row = $query)
+         // {
+         //   $output .= '
+         //   <li>
+         //   <a href="#">
+         //   <strong>'.$row["nama"].'</strong><br />
+         //   <small><em>'.$row["no_hp"].'</em></small>
+         //   </a>
+         //   </li>
+         //   ';
+
+         // }
+        }else{
+             $output .= '
+               <li>
+               <a href="#">
+               <strong>Tidak Ada Transaksi</strong><br />
+               </a>
+               </li>
+   ';
+        }
+
+
+        $status_query = $this->app_admin->notif_belum();
+        $count = $status_query->num_rows();
+
+        // $status_query = "SELECT * FROM comments WHERE comment_status=0";
+        // $result_query = mysqli_query($con, $status_query);
+        // $count = mysqli_num_rows($result_query);
+        $data = array(
+            'notification' => $output,
+            'unseen_notification'  => $count
+        );
+
+        echo json_encode($data);
+
         }
     }
 

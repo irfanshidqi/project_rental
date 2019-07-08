@@ -276,6 +276,30 @@ class App_Admin extends CI_Model {
 
 		return $this->db->get();
 	}
+
+  // notif
+  function notif_id(){
+    $this->db->select('*');
+    $this->db->from('tb_transaksi');
+    $this->db->order_by('id_transaksi', 'DESC');
+    $this->db->limit(5);
+
+    $query = $this->db->get();
+    return $query;
+  }
+//notif belum di lihat
+    function notif_belum(){
+
+      $this->db->select('*');
+      $this->db->from('tb_transaksi');
+      $this->db->where('status_notif', 0);
+
+      $query = $this->db->get();
+
+        return $query;
+
+    }
+
   	// akhir model
 
 }

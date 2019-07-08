@@ -45,9 +45,9 @@ class Api_transaksi extends REST_Controller {
         $id_trans = $this->trans->get_id_transaksi();
 
 
-        $awal_penyewaan =  $input('tgl_start');
+        $awal_penyewaan =  $input['tgl_start'];
 
-        $lama_penyewaan = $input('lama_penyewaan');
+        $lama_penyewaan = $input['lama_penyewaan'];
         $akhir_penyewaan  = date('Y-m-d', strtotime("+".$lama_penyewaan." day", strtotime($awal_penyewaan)));
 
         $transaksi = array(
