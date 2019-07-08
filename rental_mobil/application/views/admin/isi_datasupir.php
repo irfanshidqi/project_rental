@@ -42,6 +42,7 @@
                           <th>NIK</th>
                           <th>No Telp</th>
                           <th>Jenis Kelamin</th>
+                          <th>Status</th>
                           <th>Action</th>
 
                         </tr>
@@ -70,6 +71,18 @@
                             }
                             ?>
                             	
+                            </td>
+                          <td>                          
+                            <?php 
+                            if ($supir->status_supir == 1) {
+                              echo '<label class="label-success" style="color:white; padding:3px 5px;">Tersedia</label>';
+
+                            }else{
+                              echo '<label class="label-danger" style="color:white; padding:3px 5px;">Sedang Di sewa </label>';
+
+                            }
+                            ?>
+                              
                             </td>
 
                           <td>

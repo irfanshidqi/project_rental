@@ -85,7 +85,11 @@
                           </td>
                           <td>
                           	<a href="<?php echo base_url(); ?>user/detail/<?php echo $user->id_user; ?>" class="btn btn-success"><i class="fa fa-search-plus"></i></a>
+                  <?php if ($this->session->userdata('level') == 1): ?>
+
                           	<a href="<?php echo base_url(); ?>user/update_user/<?php echo $user->id_user; ?>" class="btn btn-warning"><i class="fa fa-edit"></i></a>
+                  <?php endif ?>
+
                           </td>
 
 

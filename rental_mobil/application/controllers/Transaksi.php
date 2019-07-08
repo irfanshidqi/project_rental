@@ -135,10 +135,14 @@ class Transaksi extends CI_Controller {
 
                     }
 
+// update status mobil menjadi di sewa
         $this->db->where('id_mobil' , $this->input->post('tipe_mobil'));
         $this->db->update('tb_mobil',['status_sewa' => 2]);
+// update status supir menjadi tersewa
+        $this->db->where('id_supir' , $this->input->post('id_supir'));
+        $this->db->update('tb_supir',['status_supir' => 2]);      
 
-
+// transaksi menurut tanggal sekarang
          $this->db->set('created_inv', 'NOW()', FALSE);
          $this->app_admin->insert('tb_transaksi', $transaksi);
 
@@ -321,6 +325,9 @@ if (!empty($inv)) {
                 //update status mobil menjadi Tersedia
                 $this->db->where(['id_mobil' => $row->id_mobil]);
                 $this->db->update('tb_mobil', ['status_sewa' => 1]);
+                // update status supir menjadi tersedia
+                $this->db->where(['id_supir' => $row->id_supir]);
+                $this->db->update('tb_supir',['status_supir' => 1]);
 
         
 
