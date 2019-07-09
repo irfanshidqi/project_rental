@@ -1,6 +1,17 @@
  
                  <div class="row">
-
+<?php  
+  if ($this->session->flashdata('alert'))
+   {
+      echo '<div class="alert alert-danger alert-message ">';
+      echo $this->session->flashdata('alert');
+      echo '</div>';  # code...
+  } else if ($this->session->flashdata('success')) {
+      echo '<div class="alert alert-success alert-message">';
+      echo $this->session->flashdata('success');
+      echo '</div>';
+  }
+ ?>
                   <div class="col-md-6 col-xs-12">
 
                 <div class="x_panel">
@@ -131,21 +142,6 @@
                         </div>
                       </div>
 
-                      <div class="form-group">
-                      	<div class="clearfix"></div>
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12"></label>
-                        <div class="col-md-9 col-sm-9 col-xs-12">
-<br>	
-
-                          <div class="">
-                            <label>
-                              <input type="checkbox" class="js-switch" disabled="disabled" checked="checked" /> Dengan Supir
-                              <input type="checkbox" class="js-switch"   /> Bensin
-
-                            </label>
-                          </div>
-                        </div>
-                      </div>
 
 
                       <div class="ln_solid"></div>

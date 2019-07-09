@@ -128,7 +128,7 @@ class Transaksi extends CI_Controller {
                     {
                         $this->session->set_flashdata('success', "Transaksi telah berhasil di lakukan , silahkan cek email anda untuk melihat detail");
                     }else{
-                        $this->session->set_flashdata('alert', "Transaksi gagal Email gagal di kirim");
+                        $this->session->set_flashdata('alert', "Transaksi gagal Email gagal di kirim cek email anda");
                         redirect("transaksi/tambah_transaksi");
 
                     }
