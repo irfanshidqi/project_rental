@@ -47,7 +47,8 @@ class Laporan extends CI_Controller {
         $this->template->admin('admin/isi_datalaporan',$data);
     }
 
-	function selisih_tanggal($dateline, $kembali){
+	function selisih_tanggal($dateline, $kembali)
+    {
 
 		$tgl_dateline = explode('-', $dateline);
 		$tgl_dateline = $tgl_dateline[2].'-'.$tgl_dateline[1].'-'.$tgl_dateline[0];

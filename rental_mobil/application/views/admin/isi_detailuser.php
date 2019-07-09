@@ -82,8 +82,8 @@
 									</tr>
 
 								</table>
-								<a href="#myModal" class="btn btn-danger" data-toggle="modal" >Delete</a>
-								<a href="<?php echo base_url(); ?>user/update_user/<?php echo $id_user; ?>" class="btn btn-warning" >Edit</a>
+<!-- 								<a href="#myModal" class="btn btn-danger" data-toggle="modal" >Delete</a>
+ -->								<a href="<?php echo base_url(); ?>user/update_user/<?php echo $id_user; ?>" class="btn btn-warning" >Edit</a>
 								<a href="#" class="btn btn-default" onclick="window.history.go(-1)" >Kembali</a>
 
 
@@ -94,38 +94,56 @@
                       <thead>
                         <tr>
                           <th>No.</th>
-                          <th>Username</th>
+                          <th>Nama Mobil</th>
                           <th>Nama Lengkap</th>
                           <th>NIK</th>
-                          <th>No Telp</th>
-                          <th>Jenis Kelamin</th>
-                          <th>Status</th>
-                          <th>Action</th>
+
 
                         </tr>
                       </thead>
                       <tbody>
+<?php if(!empty($data->result())){  ?>
 
-
+         <?php 
+                    $no = 1;
+                    foreach ($data->result() as $key) : ?>
                         <tr>
-                          <td>Username</td>
-                          <td>Username</td>
-                          <td>Username</td>
-                          <td>Username</td>
-                          <td>Username</td>
-                          <td> Username                         </td>
+                          <td><?php echo $key->id_transaksi; ?></td>
+                          <td><?php echo $key->nama_mobil; ?></td>
+                          <td><?php echo $key->tgl_order; ?></td>
+                          <td>                          
+                            <?php 
 
-                          <td>Username
+                      if($key->status_transaksi == 1){
+                          echo '<label class="label-default" style="color:white; padding:3px 5px;">Menunggu Pembayaran </label>';
+                        }elseif ($key->status_transaksi == 2) {
+                          echo '<label class="label-default" style="color:white; padding:3px 5px;">Menunggu Konfirmasi </label>';
+                        }elseif ($key->status_transaksi == 3) {
+                          echo '<label class="label-success" style="color:white; padding:3px 5px;">lunas </label>';
+                        }elseif ($key->status_transaksi == 4) {
+                          echo '<label class="label-primary" style="color:white; padding:3px 5px;">Dalam Proses Peminjaman </label>';
+                        }elseif ($key->status_transaksi == 5) {
+                          echo '<label class="label-success" style="color:white; padding:3px 5px;">Transaksi selesai </label>';
+                        }elseif ($key->status_transaksi == 9) {
+                          echo '<label class="label-danger" style="color:white; padding:3px 5px;">Transaksi Batal </label>';
+                            }
+                            ?>
+                            	
 
-                          	
-                          </td>
-                          <td>
-
-                          </td>
 
 
 
                         </tr>
+
+
+
+
+                    <?php endforeach; ?>
+<?php }else{
+  echo '                    <td colspan="9" class="text-muted" style="text-align:center"><b style="text-align:center">Tidak Ada Data Transaksi </b></td>
+  <td></td>
+';
+}  ?>
 
 
 

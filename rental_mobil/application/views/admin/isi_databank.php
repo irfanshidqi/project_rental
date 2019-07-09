@@ -41,7 +41,7 @@
 
                             </div>
                             <div class="right col-xs-5 text-center">
-                              <img src="<?php echo base_url().'admin_assets/' ?>images/visa.jpg" alt="" class="img-circle img-responsive">
+   
                             </div>
                           </div>
                           <div class="col-xs-12 bottom text-center">

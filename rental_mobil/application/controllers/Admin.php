@@ -27,8 +27,8 @@ class Admin extends CI_Controller {
 
 		if($this->input->post('submit', TRUE) == 'Submit')
 		{
-			$this->form_validation->set_rules('username', 'Username', 'required|trim|min_length[4]');
-			$this->form_validation->set_rules('nama_admin', 'Nama', "required|trim|min_length[4]|regex_match[/^[a-z A-Z.']+$/]");
+			$this->form_validation->set_rules('username', 'Username', 'required|trim|min_length[3]');
+			$this->form_validation->set_rules('nama_admin', 'Nama', "required|trim|min_length[3]|regex_match[/^[a-z A-Z.']+$/]");
 			$this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email');
 			$this->form_validation->set_rules('password', 'Password', 'required');
 

@@ -70,8 +70,8 @@
 
 									</tr>
 								</table>
-								<a href="#myModal" class="btn btn-danger" data-toggle="modal" >Delete</a>
-								<a href="<?php echo base_url(); ?>supir/update_supir/<?php echo $id_supir; ?>" class="btn btn-warning" >Edit</a>
+<!-- 								<a href="#myModal" class="btn btn-danger" data-toggle="modal" >Delete</a>
+ -->								<a href="<?php echo base_url(); ?>supir/update_supir/<?php echo $id_supir; ?>" class="btn btn-warning" >Edit</a>
 								<a href="#" class="btn btn-default" onclick="window.history.go(-1)" >Kembali</a>
 
 <!-- Modal HTML -->

@@ -17,6 +17,9 @@ class User extends CI_Controller {
     public function index()
     {
 
+
+
+	
     	$data['data'] = $this->app_admin->get_all('tb_user');
     	$this->template->admin('admin/isi_datauser', $data);
     }
@@ -77,22 +80,34 @@ class User extends CI_Controller {
 
 		$user = $this->app_admin->get_where('tb_user', array('id_user' => $id_user));
 
+
+    	$data['data'] = $this->app_admin->trans_id($id_user);
+
+    	if (!empty($user->result())) {
 		foreach ($user->result() as $tampil) 
-		{
-			$data['id_user'] = $tampil->id_user;
-			$data['username'] = $tampil->username;
-			$data['nama'] = $tampil->nama;
-			$data['nik'] = $tampil->nik;
-			$data['email'] = $tampil->email;
-			$data['no_hp'] = $tampil->no_hp;
-			$data['jenis_kelamin'] = $tampil->jenis_kelamin;
-			$data['alamat'] = $tampil->alamat;
-			$data['status'] = $tampil->status;
-			$data['created'] = $tampil->created;
-			$data['last_login'] = $tampil->last_login;
+			{
+				$data['id_user'] = $tampil->id_user;
+				$data['username'] = $tampil->username;
+				$data['nama'] = $tampil->nama;
+				$data['nik'] = $tampil->nik;
+				$data['email'] = $tampil->email;
+				$data['no_hp'] = $tampil->no_hp;
+				$data['jenis_kelamin'] = $tampil->jenis_kelamin;
+				$data['alamat'] = $tampil->alamat;
+				$data['status'] = $tampil->status;
+				$data['created'] = $tampil->created;
+				$data['last_login'] = $tampil->last_login;
 
 
-		}
+			}
+    	} else{
+    		redirect('user');
+    	}
+    	
+
+
+
+		
 
 		$this->template->admin('admin/isi_detailuser', $data);
 	}
