@@ -34,14 +34,7 @@
                     </ul>
                   </li>
                   <?php if ($this->session->userdata('level') == 1): ?>
-                    <li><a><i class="fa fa-key"></i> Hak Akses <span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu">
-                      <li><a href="<?php echo base_url().'Bank' ?>">Hak Akses Admin</a></li>
-<!--                       <li><a href="#">Hak Akses</a></li>
-                      <li><a href="#">List User</a></li> -->
 
-                    </ul>
-                  </li>    
                     <li><a><i class="fa fa-bank"></i> Bank <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="<?php echo base_url().'Bank' ?>">Data Rekening Bank</a></li>
@@ -112,17 +105,17 @@
 
               <ul class="nav navbar-nav navbar-right">
                 <li class="">
-                  <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                  <a href="javascript:;" class="user-profile " >
                     <i class="fa fa-user"></i> <?php echo $this->session->userdata("nama"); ?>
-                    <span class=" fa fa-angle-down"></span>
+                    
                   </a>
-                  <ul class="dropdown-menu dropdown-usermenu pull-right">
+<!--                   <ul class="dropdown-menu dropdown-usermenu pull-right">
                     <li><a href="<?php echo base_url().'admin/edit_admin' ?>"> Profile</a></li>
                     <li>
 
                     </li>
                     <li><a href="<?php echo base_url('login/logout'); ?>"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
-                  </ul>
+                  </ul> -->
                 </li>
 
                 <li role="presentation" class="dropdown">
